@@ -10,17 +10,25 @@ public abstract class Character {
     private int hp; //number representing the health points
     private boolean isAlive;
 
-    public Character( String name, int hp) {
+    private String type; // define the type of player
+
+    public Character(String type, String name, int hp) {
         this.id = UUID.randomUUID().toString();
         setName(name);
         setHp(hp);
         setAlive(true);
+        setType(type);
+
     }
 
     public Character() {
         this.id = UUID.randomUUID().toString();
         setName(nameGenerator());
         setAlive(true);
+    }
+
+    public Character(String type){
+        setType(type);
     }
 
 
@@ -37,9 +45,14 @@ public abstract class Character {
         isAlive = alive;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getId() {
         return id;
     }
+
 
     public String getName() {
         return name;
@@ -47,6 +60,10 @@ public abstract class Character {
 
     public int getHp() {
         return hp;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public boolean isAlive() {

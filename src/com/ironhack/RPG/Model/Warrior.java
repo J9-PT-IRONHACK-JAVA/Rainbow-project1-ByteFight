@@ -9,8 +9,8 @@ public class Warrior extends Character implements Atacker{
 
 
 //generates a warrior
-    public Warrior(String name, int hp, int stamina, int strength) {
-        super(name, hp);
+    public Warrior(String type, String name, int hp, int stamina, int strength) {
+        super(type, name, hp);
         setStamina(stamina);
         setStrength(strength);
     }
@@ -26,6 +26,7 @@ public class Warrior extends Character implements Atacker{
     @Override
     public String toString() {
         return  "Warrior{" +
+                "type='" + super.getType() + '\'' +
                 "id='" + super.getId() + '\'' +
                 ", name='" + super.getName() + '\'' +
                 ", hp=" + super.getHp() +
@@ -57,6 +58,8 @@ public class Warrior extends Character implements Atacker{
     public int getStrength() {
         return strength;
     }
+
+
 
 
     public void setStamina(int stamina) {
