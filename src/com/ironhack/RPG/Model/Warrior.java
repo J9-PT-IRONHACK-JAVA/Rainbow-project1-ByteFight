@@ -2,10 +2,32 @@ package com.ironhack.RPG.Model;
 
 import java.util.Random;
 
-public class Warrior extends Character implements Atacker{
+public class Warrior extends Character implements Attacker{
 
     private int stamina;
     private int strength;
+    private static int attackDamage; // allows to move value from attack() to receiveAttack().
+
+
+    // warrior attack (implements attack from interface).
+    @Override
+    public int attack() {
+        int damage;
+        if (this.stamina >= 5) {
+
+            damage = getStrength();
+            setStamina(this.stamina - 5);
+        }else {
+            damage = getStrength() / 2;
+            setStamina(this.stamina + 1);
+        }
+        setAttackDamage(damage);
+        return attackDamage;
+    }
+
+    public void receiveAttack(int attackDamage) {
+        setHp(this.getHp() - attackDamage);
+    }
 
 
 //generates a warrior
@@ -59,10 +81,11 @@ public class Warrior extends Character implements Atacker{
         return strength;
     }
 
+    public static int getAttackDamage() {
+        return attackDamage;
+    }
 
-
-
-    public void setStamina(int stamina) {
+   public void setStamina(int stamina) {
 
         if (stamina >= 10 && stamina <=50 ) {
             this.stamina = stamina;
@@ -76,17 +99,7 @@ public class Warrior extends Character implements Atacker{
         this.strength = strength;
     }
 
-    @Override
-    public int attack() {
-        int damage;
-        if (this.stamina >= 5) {
-
-            damage = getStrength();
-            setStamina(this.stamina - 5);
-        }else {
-            damage = getStrength() / 2;
-            setStamina(this.stamina + 1);
-        }
-        return damage;
+    public static void setAttackDamage(int attackDamage) {
+        Warrior.attackDamage = attackDamage;
     }
 }
