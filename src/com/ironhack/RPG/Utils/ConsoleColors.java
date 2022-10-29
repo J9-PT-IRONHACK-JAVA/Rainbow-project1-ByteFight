@@ -1,4 +1,4 @@
-package Utils;
+package com.ironhack.RPG.Utils;
 
 public class ConsoleColors {
     // Reset
