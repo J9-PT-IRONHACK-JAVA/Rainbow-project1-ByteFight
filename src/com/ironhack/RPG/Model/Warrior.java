@@ -7,6 +7,7 @@ public class Warrior extends Character implements Atacker{
     private int stamina;
     private int strength;
 
+
 //generates a warrior
     public Warrior(String name, int hp, int stamina, int strength) {
         super(name, hp);
