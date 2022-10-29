@@ -1,5 +1,6 @@
 package com.ironhack.RPG.Model;
 
+import java.util.Random;
 import java.util.UUID;
 
 public abstract class Character {
@@ -16,11 +17,17 @@ public abstract class Character {
         setAlive(true);
     }
 
+    public Character() {
+        this.id = UUID.randomUUID().toString();
+        setName(nameGenerator());
+        setAlive(true);
+    }
+
+
+
     public void setName(String name) {
         this.name = name;
     }
-
-    public String setRandomName
 
     public void setHp(int hp) {
         this.hp = hp;
@@ -44,5 +51,14 @@ public abstract class Character {
 
     public boolean isAlive() {
         return isAlive;
+    }
+
+    public String nameGenerator(){
+        String[] listNames = {"Alvaro", "Adrián", "Antonio", "Andrés", "Adán", "Borja", "Ataulfo", "Sigerico","Walia","Teodoredo", "Eurico ",
+                "Khintila","Tulga","Chindasvinto", "Ervigio", "Witiza","Égica", "Rodrigo","Homer", "Lisa", "Marge", "Bart", "Maggie"};
+
+        Random y = new Random();
+        String randomName = listNames[y.nextInt(listNames.length)];
+        return (randomName);
     }
 }
