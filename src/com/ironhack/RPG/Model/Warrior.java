@@ -6,27 +6,29 @@ public class Warrior extends Character implements Attacker{
 
     private int stamina;
     private int strength;
-    private static int attackDamage; // allows to move value from attack() to receiveAttack().
+    private static double attackDamage; // allows to move value from attack() to receiveAttack().
 
 
     // warrior attack (implements attack from interface).
     @Override
-    public int attack() {
-        int damage;
+    public double attack() {
+        double damage;
         if (this.stamina >= 5) {
 
             damage = getStrength();
             setStamina(this.stamina - 5);
+            damage = damage + 0.1;
         }else {
             damage = getStrength() / 2;
             setStamina(this.stamina + 1);
+            damage = damage + 0.2;
         }
         setAttackDamage(damage);
         return attackDamage;
     }
 
-    public void receiveAttack(int attackDamage) {
-        setHp(this.getHp() - attackDamage);
+    public void receiveAttack(double attackDamage) {
+        setHp(this.getHp() - ((int) attackDamage));
     }
 
 
@@ -81,7 +83,7 @@ public class Warrior extends Character implements Attacker{
         return strength;
     }
 
-    public static int getAttackDamage() {
+    public static double getAttackDamage() {
         return attackDamage;
     }
 
@@ -99,7 +101,7 @@ public class Warrior extends Character implements Attacker{
         this.strength = strength;
     }
 
-    public static void setAttackDamage(int attackDamage) {
+    public static void setAttackDamage(double attackDamage) {
         Warrior.attackDamage = attackDamage;
     }
 }

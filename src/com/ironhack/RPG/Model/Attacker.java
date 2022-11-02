@@ -2,8 +2,8 @@ package com.ironhack.RPG.Model;
 
 public interface Attacker {
 
-    int attack();
+    double attack();
 
-    void receiveAttack(int attackDamage);
+    void receiveAttack(double attackDamage);
 
 }

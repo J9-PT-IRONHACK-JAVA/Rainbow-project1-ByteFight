@@ -6,27 +6,29 @@ public  class Wizard extends Character implements Attacker{
 
     private int mana;
     private int intelligence;
-    private static int attackDamage; // allows to move value from attack() to receiveAttack().
+    private static double attackDamage; // allows to move value from attack() to receiveAttack().
 
 
 // wizard attack (implements attack from interface).
     @Override
-    public int attack() {
-        int damage;
+    public double attack() {
+        double damage;
         if (this.mana >= 5) {
 
             damage = getIntelligence();
             setMana(this.mana - 5);
+            damage = damage + 0.1;
         } else {
             damage = 2;
             setMana(this.mana + 1);
+            damage = damage + 0.2;
         }
        setAttackDamage(damage);
         return attackDamage;
     }
 
-    public void receiveAttack(int attackDamage) {
-        setHp(this.getHp() - attackDamage);
+    public void receiveAttack(double attackDamage) {
+        setHp(this.getHp() - ((int) attackDamage));
     }
 
 
@@ -91,11 +93,11 @@ public  class Wizard extends Character implements Attacker{
         this.intelligence = intelligence;
     }
 
-    public static int getAttackDamage() {
+    public static double getAttackDamage() {
         return attackDamage;
     }
 
-    public static void setAttackDamage(int attackDamage) {
+    public static void setAttackDamage(double attackDamage) {
         Wizard.attackDamage = attackDamage;
     }
 }
