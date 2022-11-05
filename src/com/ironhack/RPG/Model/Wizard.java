@@ -6,39 +6,50 @@ public  class Wizard extends Character implements Attacker{
 
     private int mana;
     private int intelligence;
-    private static double attackDamage; // allows to move value from attack() to receiveAttack().
+    private static int attackDamage; // allows to move value from attack() to receiveAttack().
+    private static boolean isStrongAttack;
 
 
 // wizard attack (implements attack from interface).
     @Override
-    public double attack() {
-        double damage;
-        if (this.mana >= 5) {
+    public int attack(Character attackedCharacter) {
+        int damage;
 
+        if (this.mana >= 5) {
+            setIsStrongAttack(true);
             damage = getIntelligence();
+
+            attackedCharacter.setHp(attackedCharacter.getHp() - this.intelligence);
+            if (attackedCharacter.getHp() <= 0) {
+                attackedCharacter.setAlive(false);
+            }
+
             setMana(this.mana - 5);
-            damage = damage + 0.1;
         } else {
+            setIsStrongAttack(false);
             damage = 2;
+
+            attackedCharacter.setHp(attackedCharacter.getHp() - this.intelligence);
+            if (attackedCharacter.getHp() <= 0) {
+                attackedCharacter.setAlive(false);
+            }
+
             setMana(this.mana + 1);
-            damage = damage + 0.2;
         }
        setAttackDamage(damage);
         return attackDamage;
     }
 
-    public void receiveAttack(double attackDamage) {
-        setHp(this.getHp() - ((int) attackDamage));
-    }
 
-
-// constructors
+    //'manual' constructor: generates a wizard
     public Wizard(String type, String name, int hp, int mana, int intelligence) {
         super(type, name, hp);
         this.mana = mana;
         this.intelligence = intelligence;
     }
 
+
+//'auto' constructor: generates a wizard automatically & randomly
     public Wizard() {
         super();
         setMana(generateWizardMana());
@@ -46,6 +57,7 @@ public  class Wizard extends Character implements Attacker{
         setHp(generateWizardHp());
     }
 
+//completar para el menu, para llamar este metodo para para imprimir info, falta diseño y colores
     @Override
     public String toString() {
         return "Wizard{" +
@@ -59,7 +71,7 @@ public  class Wizard extends Character implements Attacker{
                 '}';
     }
 
-    // random generators
+// random generators
     public static int generateWizardHp (){
         Random a = new Random();
         return a.nextInt(100,201);
@@ -76,28 +88,36 @@ public  class Wizard extends Character implements Attacker{
     }
 
 
-//setters and getters
+// getters & setters
     public int getMana() {
         return mana;
-    }
-
-    public void setMana(int mana) {
-        this.mana = mana;
     }
 
     public int getIntelligence() {
         return intelligence;
     }
 
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
-    }
-
     public static double getAttackDamage() {
         return attackDamage;
     }
 
-    public static void setAttackDamage(double attackDamage) {
+    public static boolean getIsStrongAttack() {
+        return isStrongAttack;
+    }
+
+    public void setMana(int mana) {
+        this.mana = mana;
+    }
+
+    public void setIntelligence(int intelligence) {
+        this.intelligence = intelligence;
+    }
+
+    public static void setAttackDamage(int attackDamage) {
         Wizard.attackDamage = attackDamage;
+    }
+
+    public static void setIsStrongAttack(boolean isStrongAttack) {
+        Wizard.isStrongAttack = isStrongAttack;
     }
 }
