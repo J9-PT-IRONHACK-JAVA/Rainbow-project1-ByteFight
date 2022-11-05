@@ -46,6 +46,7 @@ public class Party {
     public void authomaticParty() {
         int partySize = 10;
         Random ran = new Random();
+
         for (int i = 0; i < partySize; i++) {
             int randomWarriroOrWizard = ran.nextInt(2);
             if (randomWarriroOrWizard == 1) {

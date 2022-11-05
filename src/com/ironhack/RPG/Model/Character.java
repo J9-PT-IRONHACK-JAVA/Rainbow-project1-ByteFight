@@ -31,7 +31,9 @@ public abstract class Character {
         setType(type);
     }
 
+    public void attack(Character attackedCharacter){
 
+    }
 
     public void setName(String name) {
         this.name = name;
