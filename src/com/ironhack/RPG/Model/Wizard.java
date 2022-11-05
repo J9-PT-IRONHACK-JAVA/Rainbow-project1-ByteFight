@@ -6,13 +6,12 @@ public  class Wizard extends Character implements Attacker{
 
     private int mana;
     private int intelligence;
-    private static int attackDamage; // allows to move value from attack() to receiveAttack().
     private static boolean isStrongAttack;
 
 
 // wizard attack (implements attack from interface).
     @Override
-    public int attack(Character attackedCharacter) {
+    public void attack(Character attackedCharacter) {
         int damage;
 
         if (this.mana >= 5) {
@@ -36,8 +35,6 @@ public  class Wizard extends Character implements Attacker{
 
             setMana(this.mana + 1);
         }
-       setAttackDamage(damage);
-        return attackDamage;
     }
 
 
@@ -97,10 +94,6 @@ public  class Wizard extends Character implements Attacker{
         return intelligence;
     }
 
-    public static double getAttackDamage() {
-        return attackDamage;
-    }
-
     public static boolean getIsStrongAttack() {
         return isStrongAttack;
     }
@@ -111,10 +104,6 @@ public  class Wizard extends Character implements Attacker{
 
     public void setIntelligence(int intelligence) {
         this.intelligence = intelligence;
-    }
-
-    public static void setAttackDamage(int attackDamage) {
-        Wizard.attackDamage = attackDamage;
     }
 
     public static void setIsStrongAttack(boolean isStrongAttack) {

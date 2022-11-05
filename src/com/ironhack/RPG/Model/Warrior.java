@@ -6,13 +6,13 @@ public class Warrior extends Character implements Attacker{
 
     private int stamina;
     private int strength;
-    private static int attackDamage; // allows to move value from attack() to receiveAttack().
     private static boolean isStrongAttack;
 
 
 
 // warrior attack (implements attack from interface).
-    public int attack(Character attackedCharacter) {
+    @Override
+    public void attack(Character attackedCharacter) {
         int damage;
 
         if (this.stamina >= 5) {
@@ -25,7 +25,7 @@ public class Warrior extends Character implements Attacker{
             }
 
             setStamina(this.stamina - 5);
-        }else {
+        } else {
             setIsStrongAttack(false);
             damage = getStrength() / 2;
 
@@ -36,8 +36,6 @@ public class Warrior extends Character implements Attacker{
 
             setStamina(this.stamina + 1);
         }
-        setAttackDamage(damage);
-        return attackDamage;
     }
 
 
@@ -98,10 +96,6 @@ public class Warrior extends Character implements Attacker{
         return strength;
     }
 
-    public static double getAttackDamage() {
-        return attackDamage;
-    }
-
 
     public static boolean getIsStrongAttack() {
         return isStrongAttack;
@@ -120,10 +114,6 @@ public class Warrior extends Character implements Attacker{
 
     public void setStrength(int strength) {
         this.strength = strength;
-    }
-
-    public static void setAttackDamage(int attackDamage) {
-        Warrior.attackDamage = attackDamage;
     }
 
     public static void setIsStrongAttack(boolean isStrongAttack) {
