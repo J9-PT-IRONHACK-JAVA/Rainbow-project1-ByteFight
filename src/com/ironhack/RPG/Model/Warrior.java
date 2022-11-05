@@ -22,7 +22,7 @@ public class Warrior extends Character implements Atacker{
         setHp(generateWarriorHp());
     }
 
-    //completar para el menu, para llamar este metodo para para imprimir info, falta diseño y colores
+    /*We must complete this method, for the return value to the menu, with color....*/
     @Override
     public String toString() {
         return  "Warrior{" +
@@ -58,8 +58,6 @@ public class Warrior extends Character implements Atacker{
     public int getStrength() {
         return strength;
     }
-
-
 
 
     public void setStamina(int stamina) {
