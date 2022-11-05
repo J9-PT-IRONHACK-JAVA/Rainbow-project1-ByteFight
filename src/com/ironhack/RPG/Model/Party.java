@@ -27,7 +27,7 @@ public class Party {
     //Party automatic constructor
     public void authomaticParty(int partySize) {
         Random ran = new Random();
-        for (int y = 0; y < partySize; y++) {
+        for (int i = 0; i < partySize; i++) {
             int randomWarriorOrWizard = ran.nextInt(2);
             if (randomWarriorOrWizard == 1) {
                 var warrior = new Warrior();//generate a random warrior
@@ -46,7 +46,7 @@ public class Party {
     public void authomaticParty() {
         int partySize = 10;
         Random ran = new Random();
-        for (int y = 0; y < partySize; y++) {
+        for (int i = 0; i < partySize; i++) {
             int randomWarriroOrWizard = ran.nextInt(2);
             if (randomWarriroOrWizard == 1) {
                 var warrior = new Warrior();//generate a random warrior
