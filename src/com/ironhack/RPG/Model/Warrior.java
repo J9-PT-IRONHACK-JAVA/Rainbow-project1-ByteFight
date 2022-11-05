@@ -55,7 +55,10 @@ public class Warrior extends Character implements Attacker{
         setHp(generateWarriorHp());
     }
 
+
 //completar para el menu, para llamar este metodo para para imprimir info, falta diseño y colores
+
+
     @Override
     public String toString() {
         return  "Warrior{" +
@@ -99,11 +102,13 @@ public class Warrior extends Character implements Attacker{
         return attackDamage;
     }
 
+
     public static boolean getIsStrongAttack() {
         return isStrongAttack;
     }
 
    public void setStamina(int stamina) {
+
 
         if (stamina >= 10 && stamina <=50 ) {
             this.stamina = stamina;
