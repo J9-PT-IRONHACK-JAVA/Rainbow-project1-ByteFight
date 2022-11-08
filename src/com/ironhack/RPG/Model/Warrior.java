@@ -1,5 +1,8 @@
 package com.ironhack.RPG.Model;
 
+import com.ironhack.RPG.Utils.Colors;
+import com.ironhack.RPG.Utils.Emoji;
+
 import java.util.Random;
 
 public class Warrior extends Character implements Attacker{
@@ -53,21 +56,12 @@ public class Warrior extends Character implements Attacker{
         setHp(generateWarriorHp());
     }
 
-
-//completar para el menu, para llamar este metodo para para imprimir info, falta diseño y colores
-
-
     @Override
     public String toString() {
-        return  "Warrior{" +
-                "type='" + super.getType() + '\'' +
-                "id='" + super.getId() + '\'' +
-                ", name='" + super.getName() + '\'' +
-                ", hp=" + super.getHp() +
-                ", isAlive=" + super.isAlive() +
-                "stamina=" + stamina +
-                ", strength=" + strength +
-                '}';
+        return  "\033[60C" + Emoji.WARRIOR + Colors.WARRIOR + "     name: " + super.getName() + "\n\n" +
+                "\033[50C" + Colors.RESET + "hp: " + super.getHp() + "\t" +
+                "stamina: " + stamina + "\t" +
+                "strength: " + strength;
     }
 
 // random generators
