@@ -1,27 +1,19 @@
-package com.ironhack.RPG.Services;
+package com.ironhack.RPG.Logs;
 
+import com.ironhack.RPG.Displays.DisplayCharacters;
 import com.ironhack.RPG.Model.Character;
 import com.ironhack.RPG.Model.Party;
 import com.ironhack.RPG.Utils.Colors;
 
 public class DuelLog {
 
-    /*prints the current status of the party -> all the characters in order - with the index name to select them*/
-    public void showParty(Party party){
-        Party showParty = getPartyByRefNum(partyReferenceNum);
-
-
-
-    }
-
 //Shows the attack the characters will execute
     public static void displayStats(int round, Character character1, Character caracter2 ){
-        System.out.println("ROUND: " + round);
 
     }
 
 //Shows the stats of the characters after the attack/round
-    public static displayAttack(int round, Character character1, Character caracter2 ){
+    public static void displayAttack(int round, Character character1, Character caracter2 ){
 
     }
 

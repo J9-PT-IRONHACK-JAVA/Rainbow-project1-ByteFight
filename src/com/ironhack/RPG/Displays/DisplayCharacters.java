@@ -1,4 +1,4 @@
-package com.ironhack.RPG.Services;
+package com.ironhack.RPG.Displays;
 
 import com.ironhack.RPG.Model.Character;
 import com.ironhack.RPG.Model.Warrior;
@@ -10,15 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DisplayCharacters {
-
-// Displays the character info when you confirm the creation
-
-    public static void displayCharacterInfo(Character character){
-        if (character.getType().equals("warrior"))
-            displayWarriorInfo((Warrior)character);
-        else if (character.getType().equals("wizard"))
-            displayWizardInfo((Wizard)character);
-    }
 
     //ARRAY_LIST
     public static final ArrayList<String> WIZARD = new ArrayList<>(List.of(Colors.WIZARD + "\t\t\t\t                    ____\t\t\t\to",
@@ -133,12 +124,13 @@ public class DisplayCharacters {
                 "\t\t\t\t\t\t                               '--' `--`   \n\n" + Colors.RESET);
     }
 
-    private static String sword = "        /\n" +
-            "*//////{<>==================-\n" +
-            "        \\";
+// Displays the character info when you confirm the creation
 
-    private static String wand = "\n" +
-            "=============⛧";
-
+    public static void displayCharacterInfo(Character character){
+        if (character.getType().equals("warrior"))
+            displayWarriorInfo((Warrior)character);
+        else if (character.getType().equals("wizard"))
+            displayWizardInfo((Wizard)character);
+    }
 
 }

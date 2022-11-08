@@ -7,7 +7,7 @@ public class Party {
 
 
     private String partyName;
-    private ArrayList<Character> listCharacters;
+    private ArrayList<Character> listCharacters = new ArrayList<>();
 
     private int numTeams;
 

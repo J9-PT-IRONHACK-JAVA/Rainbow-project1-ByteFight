@@ -1,9 +1,8 @@
-package com.ironhack.RPG.Utils;
-
-import java.util.List;
+package com.ironhack.RPG.Logs;
 
 public class Log {
 
+//Initial information about the GAME
     public static void gameDescription(){
 
         String paragraph1 = "";
@@ -13,10 +12,5 @@ public class Log {
 
         System.out.println();
     }
-
-
-    //dentro de duelo la info de cada RONDA, que se llamara al ejecutarse cada ronda
-
-
 
 }
