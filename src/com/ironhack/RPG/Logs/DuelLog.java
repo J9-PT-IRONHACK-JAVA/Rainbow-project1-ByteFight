@@ -7,13 +7,13 @@ import com.ironhack.RPG.Utils.Colors;
 
 public class DuelLog {
 
-//Shows the attack the characters will execute
-    public static void displayStats(int round, Character character1, Character caracter2 ){
+    //Shows the stats of the characters after the attack/round
+    public void displayStats(int round, Character character1, Character character2 ){
 
     }
 
-//Shows the stats of the characters after the attack/round
-    public static void displayAttack(int round, Character character1, Character caracter2 ){
+    //Shows the attack the characters will execute
+    public void displayAttack(int round, Character character1, Character character2 ){
 
     }
 
@@ -34,4 +34,14 @@ public class DuelLog {
                     System.out.print(DisplayCharacters.WIZARD.get(i) + DisplayCharacters.VS.get(i) + DisplayCharacters.WIZARD.get(i) + "\n");
             System.out.println(Colors.RESET);
     }
+
+    //Shows the stats of the characters after the attack/round
+    public void displayWinnerAndLooser(Character character1, Character character2){
+
+    }
+
+
+
+
+
 }
