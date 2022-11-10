@@ -97,7 +97,6 @@ public class Warrior extends Character implements Attacker{
 
    public void setStamina(int stamina) {
 
-
         if (stamina >= 10 && stamina <=50 ) {
             this.stamina = stamina;
         }else{
