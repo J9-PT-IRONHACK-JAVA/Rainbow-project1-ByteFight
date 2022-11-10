@@ -11,8 +11,7 @@ public class Duel {
     public static void duel(Character character1, Character character2) throws InterruptedException {
         round = 1;
         DuelLog duelLog = new DuelLog();
-        duelLog.displayStats( round, character1, character2);
-
+        duelLog.chosenCharacters(character1, character2);
         while ( character1.isAlive() && character2.isAlive()){
             duelLog.displayAttack( round, character1, character2);
             character1.attack(character2);
@@ -24,8 +23,5 @@ public class Duel {
         }
         duelLog.displayWinnerAndLooser(character1,character2);
     }
-
-
-
 
 }

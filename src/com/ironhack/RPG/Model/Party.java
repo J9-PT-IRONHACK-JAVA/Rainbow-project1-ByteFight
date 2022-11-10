@@ -116,6 +116,8 @@ public class Party {
         return character;
     }
 
+
+
     //Devuelve un arraylist con los characters que hay en el cementerio del arraylist party introducido como parmetro.
     public ArrayList<Character> getGraveyard(Party party){
         var graveyard = new ArrayList<Character>();

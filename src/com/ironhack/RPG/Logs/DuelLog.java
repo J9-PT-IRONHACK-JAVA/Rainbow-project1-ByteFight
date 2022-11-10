@@ -18,7 +18,7 @@ public class DuelLog {
     }
 
     /*Prints the chosen characters for this battle*/
-    public static void chosenCharacters(Character fighter1, Character fighter2){
+    public void chosenCharacters(Character fighter1, Character fighter2){
             System.out.println("\n");
             if (fighter1.getType().equals("warrior") && fighter2.getType().equals("wizard"))
                 for (int i = 0; i < DisplayCharacters.WARRIOR.size(); i++)
