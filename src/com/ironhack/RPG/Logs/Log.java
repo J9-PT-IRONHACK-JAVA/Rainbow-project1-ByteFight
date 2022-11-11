@@ -1,5 +1,6 @@
 package com.ironhack.RPG.Logs;
 
+import com.ironhack.RPG.Services.Menu;
 import com.ironhack.RPG.Utils.Colors;
 import com.ironhack.RPG.Utils.Emoji;
 
@@ -20,15 +21,24 @@ public class Log {
             System.out.print("\033[70C");
             System.out.print(phrase + "\n\n");
             System.out.print("\033[s");
-            System.out.print(Colors.CYAN_BOLD + "\033[100C" + "Press [ENTER] to continue..." + Colors.RESET);
+            System.out.print(Colors.CYAN_BOLD + "\033[100C" + "Press " + Colors.GREEN_BOLD + "[ENTER]" +
+                    Colors.CYAN_BOLD + " to continue..." + Colors.RESET);
             while (!scanner.nextLine().equals("")){
                 System.out.print("\033[u");
                 System.out.print("\033[2K");
-                System.out.print("\033[95C" + Emoji.CROSS_MARK +"Not a valid value. Press [ENTER] to continue");
+                System.out.print("\033[95C" + Emoji.CROSS_MARK +" Not a valid value. Press " + Colors.GREEN_BOLD + "[ENTER]" +
+                        Colors.CYAN_BOLD + " to continue" + Colors.RESET);
             }
             System.out.print("\033[u");
             System.out.print("\033[2K");
         }
+    }
+
+    public static void errorInputLog(String message){
+        Menu.clean();
+        System.out.println("\n\n");
+        System.out.println(message);
+        System.out.print("\033[110C");
     }
 
 }

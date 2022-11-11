@@ -77,8 +77,8 @@ public class DisplayCharacters {
         System.out.println(Colors.WIZARD + "\n\t\t\t\t\t\t\t\t                    ____ \n" +
 
                 "\t\t\t\t\t\t\t\t                  .'* *.'\n" +
-                "\t\t\t\t\t\t\t\t               __/_*_*(_\t\t\t\t\t" + Colors.CREATE + "A new WIZARD is created\n" +
-                Colors.WIZARD + "\t\t\t\t\t\t\t\t              / _______ \\\n" +
+                "\t\t\t\t\t\t\t\t               __/_*_*(_\t\t\t\t\t\n" +
+                "\t\t\t\t\t\t\t\t              / _______ \\\n" +
                 "\t\t\t\t\t\t\t\t             _\\_)/___\\(_/_ \n" +
                 "\t\t\t\t\t\t\t\t            / _((\\- -/))_ \\\n" +
                 "\t\t\t\t\t\t\t\t            \\ \\())(-)(()/ /\n" +
@@ -102,8 +102,8 @@ public class DisplayCharacters {
     public static void displayWarriorInfo(Warrior warrior) {
         System.out.println(Colors.WARRIOR + "\n\t\t\t\t\t\t                                   Y \n" +
                 "\t\t\t\t\t\t                                  _A_\n" +
-                "\t\t\t\t\t\t                                 / | \\\t\t\t\t\t\t" + Colors.CREATE + "A new WARRIOR is created\n" +
-                Colors.WARRIOR + "\t\t\t\t\t\t                                |.-=-.|\n" +
+                "\t\t\t\t\t\t                                 / | \\\t\t\t\t\t\t\n" +
+                "\t\t\t\t\t\t                                |.-=-.|\n" +
                 "\t\t\t\t\t\t                                )\\_|_/(\n" +
                 "\t\t\t\t\t\t                             .=='\\   /`==.\n" +
                 "\t\t\t\t\t\t                           .'\\   (`:')   /`.\n" +
