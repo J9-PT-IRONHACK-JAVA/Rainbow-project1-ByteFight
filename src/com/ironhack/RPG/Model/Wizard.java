@@ -52,6 +52,7 @@ public  class Wizard extends Character implements Attacker{
 //'auto' constructor: generates a wizard automatically & randomly
     public Wizard() {
         super();
+        setType("wizard");
         setMana(generateWizardMana());
         setIntelligence(generateWizardIntelligence());
         setHp(generateWizardHp());
@@ -59,8 +60,8 @@ public  class Wizard extends Character implements Attacker{
 
     @Override
     public String toString() {
-        return "\033[60C" + Emoji.WIZARD + Colors.WIZARD + "    name: " + super.getName() + "\n\n" +
-                Colors.RESET + "\033[50C" + "hp: " + super.getHp() + "\t" +
+        return "\033[100C" + Emoji.WIZARD + Colors.WIZARD + "    name: " + super.getName() + "\n\n" +
+                "\033[95C" + Colors.RESET + "hp: " + super.getHp() + "\t" +
                 "stamina: " + mana + "\t" +
                 "strength: " + intelligence;
     }

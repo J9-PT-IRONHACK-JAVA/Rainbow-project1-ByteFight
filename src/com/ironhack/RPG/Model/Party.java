@@ -40,7 +40,7 @@ public class Party {
     }
 //Overload authomaticParty with a default size
     public void authomaticParty() {
-        int partySize = 10;
+        int partySize = 15;
         Random ran = new Random();
 
         for (int i = 0; i < partySize; i++) {
@@ -58,8 +58,6 @@ public class Party {
 
         }
     }
-
-
 
     public String getPartyName(){
         return this.partyName;
@@ -79,13 +77,13 @@ public class Party {
 
 
 
-    //Añade un personaje creado dentro de otra clase o importado a través de CSV
+    //Add a character to the ArrayList of characters that represents the party
     public void addCharacter(Character character){
         listCharacters.add(character);
     }
 
 
-    //Devuelve el personaje por índice, en caso de poner un indice fuera de rango devuelve excepción
+    //Return a character by the index, if index is out of Bounds, throw the Exception
     public Character getCharacterByIndex(int i) throws IndexOutOfBoundsException{
         if(i<0 || i > listCharacters.size()) {
             throw new IndexOutOfBoundsException();
@@ -96,7 +94,7 @@ public class Party {
 
 
 
-    //Método que compara el nombre del parametro con los nombres de la lista, si coincide devuelve TRUE
+    //Method that compares the names of the list and return TRUE if name already exists
     public boolean containsName(String name){
         for(Character character : this.listCharacters){
             if (character.getName().equals(name) ){return true;}
@@ -116,9 +114,7 @@ public class Party {
         return character;
     }
 
-
-
-    //Devuelve un arraylist con los characters que hay en el cementerio del arraylist party introducido como parmetro.
+    //Returns the arrayList of the character of the party is passed,  thar are isAlive=FALSE;
     public ArrayList<Character> getGraveyard(Party party){
         var graveyard = new ArrayList<Character>();
         for (Character character: party.listCharacters){
@@ -128,23 +124,5 @@ public class Party {
         }
         return graveyard;
     }
-
-    //showTeams (solo puedo enseñar un equipo a la vez, para enseñar los dos se tendría que llamar la función desde fuera a los dos equipos)
-    public void printTeam(Party party) throws InterruptedException {
-        for (Character character: party.listCharacters){
-            System.out.println(character);
-            Thread.sleep(300);
-        }
-    }
-
-
-
-
-
-
-
-
-
-
 
 }

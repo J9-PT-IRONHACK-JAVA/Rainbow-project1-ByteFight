@@ -6,7 +6,7 @@ public class Colors {
     public static final String WARRIOR = "\033[1;38;5;73m";  // BOLD_PURPLE_WITH_BLACK_BACKGROUND
     public static final String CREATE = "\033[3;32m";  // BOLD_PURPLE_WITH_BLACK_BACKGROUND
     public static final String PINK = "\033[38;5;201m";  // PINK
-    public static final String DARK_GREEN = "\033[38;5;23m";  // DARK_GREEN
+    public static final String DARK_GREEN = "\033[1;38;5;23m";  // DARK_GREEN
     public static final String BOLD_DARK_YELLOW = "\033[38;2;247;228;36m";  // BOLD_DARK_YELLOW
 
 

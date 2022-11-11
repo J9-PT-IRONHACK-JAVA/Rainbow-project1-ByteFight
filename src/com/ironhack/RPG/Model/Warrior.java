@@ -51,6 +51,7 @@ public class Warrior extends Character implements Attacker{
 //'auto' constructor: generates a warrior automatically & randomly
     public Warrior() {
         super();
+        setType("warrior");
         setStamina(generateWarriorStamina());
         setStrength(generateWarriorStrength());
         setHp(generateWarriorHp());
@@ -58,8 +59,8 @@ public class Warrior extends Character implements Attacker{
 
     @Override
     public String toString() {
-        return  "\033[60C" + Emoji.WARRIOR + Colors.WARRIOR + "     name: " + super.getName() + "\n\n" +
-                "\033[50C" + Colors.RESET + "hp: " + super.getHp() + "\t" +
+        return  "\033[100C" + Emoji.WARRIOR + Colors.WARRIOR + "     name: " + super.getName() + "\n\n" +
+                "\033[95C" + Colors.RESET + "hp: " + super.getHp() + "\t" +
                 "stamina: " + stamina + "\t" +
                 "strength: " + strength;
     }
