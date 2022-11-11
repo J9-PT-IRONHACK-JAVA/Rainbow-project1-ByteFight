@@ -51,6 +51,7 @@ public class Warrior extends Character implements Attacker{
 //'auto' constructor: generates a warrior automatically & randomly
     public Warrior() {
         super();
+        setType("warrior");
         setStamina(generateWarriorStamina());
         setStrength(generateWarriorStrength());
         setHp(generateWarriorHp());

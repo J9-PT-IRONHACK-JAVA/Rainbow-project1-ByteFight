@@ -52,6 +52,7 @@ public  class Wizard extends Character implements Attacker{
 //'auto' constructor: generates a wizard automatically & randomly
     public Wizard() {
         super();
+        setType("wizard");
         setMana(generateWizardMana());
         setIntelligence(generateWizardIntelligence());
         setHp(generateWizardHp());

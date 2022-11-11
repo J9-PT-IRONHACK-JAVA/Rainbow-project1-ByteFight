@@ -14,8 +14,8 @@ import java.util.Scanner;
 
 //Fill both parties with random values
 public class AutomaticPartyCreator {
-    public static void autoCreator(Party party1, Party party2){
-        Scanner scan = new Scanner (System.in);
+    public static void autoCreator(Scanner scan, Party party1, Party party2){
+    //    Scanner scan = new Scanner (System.in);
 //Fills the first Party with a Random Generator
         party1.authomaticParty();
         PartyLog.displayParty(party1);
@@ -34,7 +34,7 @@ public class AutomaticPartyCreator {
         while (!scan.nextLine().equals("")) {
             System.out.println("\033[95C" + Emoji.CROSS_MARK + "  Invalid INPUT. Press [ENTER] to continue\n\n");
         }
-        scan.close();
+     //   scan.close();
     }
 
 //Static class that extract the method fillParty, that fills the parties from CSV
@@ -53,8 +53,8 @@ public class AutomaticPartyCreator {
     }
 
 //Fills both parties reading from a done CSV file
-    public static void fromCsvCreator(Party party1, Party party2){
-        Scanner response = new Scanner(System.in);
+    public static void fromCsvCreator(Scanner response, Party party1, Party party2){
+      //  Scanner response = new Scanner(System.in);
         File partiesCreator = new File("../partiesCreator.csv");
         try {
             Scanner scan = new Scanner(partiesCreator);
@@ -65,8 +65,10 @@ public class AutomaticPartyCreator {
 //banner
             Banner.partyCreatorConfirmation();
             System.out.println("\033[95C" + Colors.CYAN_BOLD + "Press [ENTER] to create the Second Party\n\n" + Colors.RESET);
-            while (!response.nextLine().equals(""))
+            while (!response.nextLine().equals("")){
+                Menu.clean();
                 System.out.println("\033[95C" + Emoji.CROSS_MARK + "  Invalid INPUT. You must press [ENTER] to continue\n\n");
+            }
             Menu.clean();
 //Fill the second Party using the static method fillParty
             fillParty(party2, scan);
@@ -74,12 +76,15 @@ public class AutomaticPartyCreator {
 //banner
             Banner.partyCreatorConfirmation();
             System.out.println("\033[100C" + Colors.CYAN_BOLD + "Press [ENTER] to continue...\n\n");
-            while (!response.nextLine().equals(""))
+            while (!response.nextLine().equals("")){
+                Menu.clean();
                 System.out.println("\033[95C" + Emoji.CROSS_MARK + "  Invalid INPUT. You must press [ENTER] to continue\n\n");
+            }
+            Menu.clean();
             scan.close();
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-        response.close();
+     //   response.close();
     }
 }
