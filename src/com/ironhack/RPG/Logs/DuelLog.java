@@ -7,17 +7,17 @@ import com.ironhack.RPG.Utils.Colors;
 
 public class DuelLog {
 
-    //Shows the stats of the characters after the attack/round
+
+                    //Shows the attack the characters will execute
+    public static void displayAttack(int round, Character character1, Character character2 ){
+
+    }
+                //Shows the stats of the characters after the attack/round
     public static void displayStats(int round, Character character1, Character character2){
 
     }
 
-    //Shows the attack the characters will execute
-    public static void displayAttack(int round, Character character1, Character character2 ){
-
-    }
-
-    /*Prints the chosen characters for this battle*/
+            /*Displays the chosen characters for this battle -> BigImages without info*/
     public static void chosenCharacters(Character fighter1, Character fighter2){
             System.out.println("\n");
             if (fighter1.getType().equals("warrior") && fighter2.getType().equals("wizard"))
