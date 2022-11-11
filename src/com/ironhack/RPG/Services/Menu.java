@@ -42,7 +42,7 @@ public class Menu {
         }
         Menu.clean();
         switch (Integer.parseInt(choice)) {
-            case 0 -> System.out.println("Daniel class");//DanielClass > manualCreator(party1, party2);
+            case 0 -> ManualParty.manuallyCreateBothParties();
             case 1 -> AutomaticPartyCreator.autoCreator(scanner, party1, party2);
             case 2 -> AutomaticPartyCreator.fromCsvCreator(scanner, party1, party2);
             default -> System.out.println("An error has occurred");
