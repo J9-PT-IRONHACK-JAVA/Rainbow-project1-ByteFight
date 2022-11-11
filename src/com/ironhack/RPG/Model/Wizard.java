@@ -9,7 +9,7 @@ public  class Wizard extends Character implements Attacker{
 
     private int mana;
     private int intelligence;
-    private static boolean isStrongAttack;
+    private boolean isStrongAttack;
 
 
 // wizard attack (implements attack from interface).
@@ -17,21 +17,19 @@ public  class Wizard extends Character implements Attacker{
     public void attack(Character attackedCharacter) {
         int damage;
 
-        if (this.mana >= 5) {
-            setIsStrongAttack(true);
+        if (getIsStrongAttack()) {
             damage = getIntelligence();
 
-            attackedCharacter.setHp(attackedCharacter.getHp() - this.intelligence);
+            attackedCharacter.setHp(attackedCharacter.getHp() - damage);
             if (attackedCharacter.getHp() <= 0) {
                 attackedCharacter.setAlive(false);
             }
 
             setMana(this.mana - 5);
         } else {
-            setIsStrongAttack(false);
             damage = 2;
 
-            attackedCharacter.setHp(attackedCharacter.getHp() - this.intelligence);
+            attackedCharacter.setHp(attackedCharacter.getHp() - damage);
             if (attackedCharacter.getHp() <= 0) {
                 attackedCharacter.setAlive(false);
             }
@@ -92,9 +90,8 @@ public  class Wizard extends Character implements Attacker{
         return intelligence;
     }
 
-    public static boolean getIsStrongAttack() {
-        return isStrongAttack;
-    }
+    public  boolean getIsStrongAttack() {return (this.mana >= 5);}
+
 
     public void setMana(int mana) {
         this.mana = mana;
@@ -104,7 +101,4 @@ public  class Wizard extends Character implements Attacker{
         this.intelligence = intelligence;
     }
 
-    public static void setIsStrongAttack(boolean isStrongAttack) {
-        Wizard.isStrongAttack = isStrongAttack;
-    }
 }

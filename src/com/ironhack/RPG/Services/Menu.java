@@ -58,11 +58,7 @@ public class Menu {
         Character character2 = getAndDisplayCharacterForBattle(scanner, party2, "Second");
 
         Banner.fightBanner();
-        try {
-            Duel.duel(character1, character2);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e.getMessage());
-        }
+        Duel.duel(character1, character2);
     }
 
 

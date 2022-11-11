@@ -98,7 +98,6 @@ public class Party {
     public boolean containsName(String name){
         for(Character character : this.listCharacters){
             if (character.getName().equals(name) ){return true;}
-            else{ return false;}
         }
         return false;
     }
