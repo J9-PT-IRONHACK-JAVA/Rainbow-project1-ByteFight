@@ -2,9 +2,6 @@ package com.ironhack.RPG.Logs;
 
 import com.ironhack.RPG.Displays.DisplayCharacters;
 import com.ironhack.RPG.Model.Character;
-import com.ironhack.RPG.Model.Party;
-import com.ironhack.RPG.Model.Warrior;
-import com.ironhack.RPG.Model.Wizard;
 import com.ironhack.RPG.Utils.Banner;
 import com.ironhack.RPG.Utils.Colors;
 import com.ironhack.RPG.Utils.Emoji;
@@ -14,33 +11,30 @@ public class DuelLog {
                     //Shows the attacks the characters will execute
     public static void displayAttack(int round, Character character1, Character character2 ){
 
-        System.out.println("\033[110C" + Colors.YELLOW_BOLD + "[ROUND " + round + "]\n\n" + Colors.RESET);
-        System.out.print("\033[s");
-        System.out.print("\033[60C");
+        System.out.println("\033[105C" + Colors.YELLOW_BOLD + "[ROUND " + round + "]\n\n" + Colors.RESET);
+        System.out.print("\033[95C");
         displayAttackByCharacter(character1);
-        System.out.print("\033[u");
-        System.out.print("\033[130C");
+        System.out.print("\033[95C");
         displayAttackByCharacter(character2);
 
     }
-
                 //Method that returns the attack of one fighter to de Method -> displayAttack: in this class
     public static void displayAttackByCharacter(Character character){
         if (character.getType().equals("warrior")){
             System.out.print("Warrior " + character.getName() + " -> ");
             if (character.getIsStrongAttack()){
-                System.out.print(Emoji.DAGGER + Colors.RED_BOLD + "  HEAVY ATTACK\n\n");
+                System.out.print(Emoji.DAGGER + Colors.RED_BOLD + "  HEAVY ATTACK\n\n" + Colors.RESET);
             }else{
-                System.out.print(Emoji.PUSH_PIN + Colors.BLUE_BOLD + "  WEAK ATTACK\n\n");
+                System.out.print(Emoji.PUSH_PIN + Colors.BLUE_BOLD + "  WEAK ATTACK\n\n" + Colors.RESET);
             }
         }else if (character.getType().equals("wizard")){
             System.out.print("Wizard " + character.getName() + " -> ");
             if (character.getIsStrongAttack()){
-                System.out.print(Emoji.ATTACK + Colors.RED_BOLD + "  FIREBALL ATTACK\n\n");
+                System.out.print(Emoji.ATTACK + Colors.RED_BOLD + "  FIREBALL ATTACK\n\n" + Colors.RESET);
             }else{
-                System.out.print(Emoji.MAGIC_WAND + Colors.BLUE_BOLD + "  STAFF HIT ATTACK\n\n");
+                System.out.print(Emoji.MAGIC_WAND + Colors.BLUE_BOLD + "  STAFF HIT ATTACK\n\n" + Colors.RESET);
             }
-            System.out.print("\n\n\n\n");
+            System.out.print("\n\n");
         }
         try {
             Thread.sleep(500);
@@ -50,11 +44,11 @@ public class DuelLog {
     }
                 //Shows the stats of the characters after the attack/round
     public static void displayStats(Character character1, Character character2){
-        System.out.print("\033[80C" + Emoji.BLOOD + Colors.PURPLE_BOLD + "  Stats of the fighters after the attacks  " + Emoji.BLOOD +  "\n\n" +  Colors.RESET);
+        System.out.print("\033[90C" + Emoji.BLOOD + Colors.PURPLE_BOLD + "  Stats of the fighters after the attacks  " + Emoji.BLOOD +  "\n\n\n" +  Colors.RESET);
         System.out.print(character1);
-        System.out.print("\n\n");
+        System.out.print("\n\n\n");
         System.out.print(character2);
-        System.out.print("\n\n");
+        System.out.print("\n\n\n\n\n\n");
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {

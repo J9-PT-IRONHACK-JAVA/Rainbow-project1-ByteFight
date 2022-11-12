@@ -21,15 +21,15 @@ public class DisplayGraveyard {
     }
 
     public static void displayWarriorAtGraveyard(Warrior character){
-        Menu.clean();
-        System.out.println("\033[120C" + Emoji.SKULL);
+      //  Menu.clean();
+        System.out.println("\033[110C" + Emoji.SKULL + "\n\n");
         System.out.print(character.toString());
         System.out.println("\n\n\n");
     }
 
     public static void displayWizardAtGraveyard(Wizard character){
-        Menu.clean();
-        System.out.println("\033[120C" + Emoji.SKULL);
+      //  Menu.clean();
+        System.out.println("\033[110C" + Emoji.SKULL + "\n\n");
         System.out.print(character.toString());
         System.out.println("\n\n\n");
     }
