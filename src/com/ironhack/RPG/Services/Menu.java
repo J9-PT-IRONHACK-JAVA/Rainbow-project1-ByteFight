@@ -4,6 +4,7 @@ package com.ironhack.RPG.Services;
 import com.ironhack.RPG.Displays.DisplayCharacters;
 import com.ironhack.RPG.Logs.PartyLog;
 import com.ironhack.RPG.Model.Character;
+import com.ironhack.RPG.Model.Graveyard;
 import com.ironhack.RPG.Model.Party;
 import com.ironhack.RPG.Utils.Banner;
 import com.ironhack.RPG.Logs.Log;
@@ -23,12 +24,13 @@ public class Menu {
     public static Party party1 = new Party();
     public static Party party2 = new Party();
 
-                        /*METHOD: How to create the parties - 3 options. -> called from MENU*/
+    public static Graveyard graveyard = new Graveyard();
+
+                        /*METHOD: How to create the parties - 3 options. -> called from MAIN*/
     public static void howPartyWillBeCreated(Scanner scanner){
         System.out.println("\n" + "\033[95C" + Colors.CYAN_BOLD + "How do you want to create the parties?\n\n" + Colors.RESET);
 
         System.out.println("\033[80C" + Colors.CYAN_BOLD + "[0] Manually\t\t[1] Automatically\t\t[2] From CSV\n\n" + Colors.RESET);
-     //   System.out.print("\033[s");
         System.out.print("\033[110C");
         String choice = scanner.nextLine();
         while (!(choice.equals("0") || choice.equals("1") || choice.equals("2"))) {
@@ -46,16 +48,40 @@ public class Menu {
         }
     }
 
-                /*METHOD: Show both parties and allow user to choose characters for the fight -> called from MENU*/
+                /*METHOD: Show both parties and allow user to choose characters for the fight -> called from MAIN*/
     public static void tryFighterForBattle(Scanner scanner){
-        clean();
-                    /*First FIGHTER*/
-        Character character1 = getAndDisplayCharacterForBattle(scanner, party1, "First");
-                    /*Second FIGHTER*/
-        Character character2 = getAndDisplayCharacterForBattle(scanner, party2, "Second");
+        while (party1.getPartySize() != 0 && party2.getPartySize() != 0){
+            clean();
+            /*First FIGHTER*/
+            Character character1 = getAndDisplayCharacterForBattle(scanner, party1, "First");
+            /*Second FIGHTER*/
+            Character character2 = getAndDisplayCharacterForBattle(scanner, party2, "Second");
 
-        Banner.fightBanner();
-        Duel.duel(character1, character2);
+            Banner.fightBanner();
+            Duel.duel(character1, character2, party1, party2, graveyard);
+
+            //Show Graveyard
+            System.out.println("\033[80C" + Colors.CYAN_BOLD + "[0] Show Graveyard\t\t[1] Continue\n\n" + Colors.RESET);
+            System.out.print("\033[110C");
+            String choice = scanner.nextLine();
+            while (!(choice.equals("0") || choice.equals("1"))) {
+                Log.errorInputLog("\n\n" + "\033[80C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD +
+                        "  Invalid INPUT. Choose one of the next options and press " + Colors.GREEN_BOLD +  "[ENTER]\n\n" +
+                        "\033[80C" + Colors.CYAN_BOLD + "[0] Show Graveyard\t\t[1] Automatically\n\n" + Colors.RESET);
+                choice = scanner.nextLine();
+            }
+            if (choice.equals("0")) {
+                graveyard.displayGraveyard();
+                System.out.println("\033[90C" + Colors.CYAN_BOLD + Emoji.FINGER + "  Press " +
+                        Colors.GREEN_BOLD + "[ENTER] " + Colors.CYAN_BOLD + "to continue...\n\n" + Colors.RESET);
+                System.out.print("\033[110C");
+                while (!scanner.nextLine().equals(""))
+                    Log.errorInputLog("\033[90C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD + "  Invalid INPUT. You must press " + Colors.GREEN_BOLD +
+                            "[ENTER] " + Colors.CYAN_BOLD + "to continue\n\n" + Colors.RESET);
+            }
+            Menu.clean();
+        }
+
     }
 
 
@@ -98,10 +124,10 @@ public class Menu {
                         "[NUM]" + Colors.CYAN_BOLD + ", and press " + Colors.GREEN_BOLD + "[ENTER]\n\n" + Colors.RESET);
                 System.out.print("\033[110C");
             }else{
-                Log.errorInputLog("\033[80C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD + "  Invalid INPUT. Enter a number between 1 and " +
-                        party.getPartySize() + ", and press " + Colors.GREEN_BOLD + "[ENTER]\n\n" + Colors.RESET +
-                        "\033[85C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Enter " + Colors.GREEN_BOLD + "[SHOW]" +
-                        Colors.CYAN_BOLD + " if you want to see all party" + Colors.RESET);
+                Log.errorInputLog("\033[80C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD + "  Invalid INPUT. Enter a number between " +
+                        Colors.YELLOW_BOLD + "[" + 1 + "]" + Colors.CYAN_BOLD + " and " + party.getPartySize() + ", and press " +
+                        Colors.GREEN_BOLD + "[ENTER]\n\n" + Colors.RESET + "\033[85C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Enter " +
+                        Colors.GREEN_BOLD + "[SHOW]" + Colors.CYAN_BOLD + " if you want to see all party\n\n" + Colors.RESET);
             }
             characterIndex = scanner.nextLine();
         }

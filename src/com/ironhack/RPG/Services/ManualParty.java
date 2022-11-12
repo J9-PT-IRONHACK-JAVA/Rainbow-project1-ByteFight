@@ -43,13 +43,14 @@ public class ManualParty {
         while (!scanner.nextLine().equals(""))
             Log.errorInputLog("\033[90C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD + "  Invalid INPUT. Press " + Colors.GREEN_BOLD + "[ENTER] " +
                     Colors.CYAN_BOLD + "to continue\n\n" + Colors.RESET);
+        Menu.clean();
     }
 
     //Party preparing for fill
     public static int askPartyNameAndLength_BuildParty(Scanner scanner, Party party, int size) {
 
             //Party NAME
-        System.out.println("\n" + "\033[90C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Please enter a name for your party/team\n\n" + Colors.RESET);
+        System.out.println("\n" + "\033[90C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Please enter a name for your party\n\n" + Colors.RESET);
         System.out.print("\033[110C");
         String name = scanner.nextLine();
         while (name.length() < 1) {
@@ -81,8 +82,8 @@ public class ManualParty {
             size = Integer.parseInt(partySize);
         }
         Menu.clean();
-        System.out.println("\n\n" + "\033[85C" + Emoji.OK + Colors.PURPLE_BOLD + "  Thanks! The size for party " + party.getPartyName() +
-                " was set to " + Colors.YELLOW_BOLD + "[" + size + "]" + "\n" + Colors.RESET);
+        System.out.println("\n\n" + "\033[85C" + Emoji.OK + Colors.PURPLE_BOLD + "  Thanks! The size for party " +
+                Colors.YELLOW_BOLD + "[" + party.getPartyName() + "]" + Colors.CYAN_BOLD + " was set to " + Colors.YELLOW_BOLD + "[" + size + "]" + "\n" + Colors.RESET);
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
@@ -106,9 +107,9 @@ public class ManualParty {
         Menu.clean();
         int hp = insertHp(type, scanner);
         Menu.clean();
-        int force = insertForce(type, scanner);
-        Menu.clean();
         int energy = insertEnergy(type, scanner);
+        Menu.clean();
+        int force = insertForce(type, scanner);
         if (type.equals("warrior")){
             Character character = new Warrior(type, name, hp, energy, force);
             party.addCharacter(character);
@@ -118,7 +119,8 @@ public class ManualParty {
             party.addCharacter(character);
             DisplayCharacters.displayCharacterInfo(character);
         }
-        System.out.println("\033[95C" + Colors.PURPLE_BOLD + Emoji.NEW_MEMBER + "  " + size + " characters left to create\n\n" + Colors.RESET);
+        System.out.println("\033[95C" + Colors.PURPLE_BOLD + Emoji.NEW_MEMBER + "  " + Colors.YELLOW_BOLD +
+                "[" + (size - 1) + "]" + Colors.CYAN_BOLD + " characters left to create\n\n" + Colors.RESET);
         System.out.println("\033[95C" + Colors.CYAN_BOLD + Emoji.FINGER + "  Press " +
                 Colors.GREEN_BOLD + "[ENTER] " + Colors.CYAN_BOLD + "to continue...\n\n" + Colors.RESET);
         System.out.print("\033[110C");
@@ -177,7 +179,7 @@ public class ManualParty {
             }
         }else if (type.equals("wizard")){
             System.out.println("\n" + "\033[80C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Please input the desired health points for your " +
-                    type + " player\n\n" + "\033[95C" + "you may input values between " Colors.YELLOW_BOLD + "[" + 50 + "]" +
+                    type + " player\n\n" + "\033[95C" + "you may input values between " + Colors.YELLOW_BOLD + "[" + 50 + "]" +
                             Colors.CYAN_BOLD + " and "  + Colors.YELLOW_BOLD + "[" +  100 + "]n\n" + Colors.RESET);
             System.out.print("\033[110C");
             hp = scanner.nextLine();
@@ -217,7 +219,7 @@ public class ManualParty {
         String userInput = "";
         if (type.equals("warrior")) {
             System.out.println("\n" + "\033[80C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Please input the desired strength for your " +
-                    Colors.YELLOW_BOLD + "[" + type + "]" + Colors.CYAN_BOLD + " player\n" +
+                    Colors.YELLOW_BOLD + "[" + type + "]" + Colors.CYAN_BOLD + " player\n\n" +
                     "\033[95C" + "you may input values between 1 and 10\n\n" + Colors.RESET);
             System.out.print("\033[110C");
             userInput = scanner.nextLine();
@@ -229,7 +231,7 @@ public class ManualParty {
             }
         } else if (type.equals("wizard")) {
             System.out.println("\n" + "\033[80C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Please input the desired intelligence for your " +
-                    Colors.YELLOW_BOLD + "[" + type + "]" + Colors.CYAN_BOLD + " player\n");
+                    Colors.YELLOW_BOLD + "[" + type + "]" + Colors.CYAN_BOLD + " player\n\n");
             System.out.println("\033[85C" + "you may input values between " + Colors.YELLOW_BOLD + "[" + 1 + "]" +
                             Colors.CYAN_BOLD + " and "  + Colors.YELLOW_BOLD + "[" + 50 + "]\n" + Colors.RESET);
             System.out.print("\033[110C");

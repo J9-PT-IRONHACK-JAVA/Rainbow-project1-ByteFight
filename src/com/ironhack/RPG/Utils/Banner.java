@@ -44,7 +44,30 @@ public class Banner {
             "\t\t\t\t\t   ||     ||    ||   ||           ||       ||  '|.    ||   ||    ||     ||         ||    ||  ||       '|.    ||   ||   |   |||  .     '||\n" +
             "\t\t\t\t\t  .||.   .||.  .||. .||.....|    .||.     .||.  ''|...'|  .||.  .||.   .||.       .||...|'  .||.....|  ''|...'|  .||. .|.   '|  |'....|' \n\n\n\n" + Colors.RESET;
 
-//Display of the Beginning of the Fight
+
+
+
+    public static final String WINNER = "\n\n\n\n" +
+            "\033[70C" + Colors.GREEN_BOLD + "oooooo   oooooo     oooo ooooo ooooo      ooo ooooo      ooo oooooooooooo ooooooooo.   \n" +
+            "\033[70C" + Colors.GREEN_BOLD + " `888.    `888.     .8'  `888' `888b.     `8' `888b.     `8' `888'     `8 `888   `Y88. \n" +
+            "\033[70C" + Colors.GREEN_BOLD + "  `888.   .8888.   .8'    888   8 `88b.    8   8 `88b.    8   888          888   .d88' \n" +
+            "\033[70C" + Colors.GREEN_BOLD + "   `888  .8'`888. .8'     888   8   `88b.  8   8   `88b.  8   888oooo8     888ooo88P'  \n" +
+            "\033[70C" + Colors.GREEN_BOLD + "    `888.8'  `888.8'      888   8     `88b.8   8     `88b.8   888    \"     888`88b.    \n" +
+            "\033[70C" + Colors.GREEN_BOLD + "     `888'    `888'       888   8       `888   8       `888   888       o  888  `88b.  \n" +
+            "\033[70C" + Colors.GREEN_BOLD + "      `8'      `8'       o888o o8o        `8  o8o        `8  o888ooooood8 o888o  o888o \n\n\n" + Colors.RESET;
+
+
+    public static final String TIE = "\n\n\n\n" +
+            "\033[70C" + Colors.PURPLE_BOLD + "ooooooooooooo ooooo oooooooooooo \n" +
+            "\033[70C" + Colors.PURPLE_BOLD + "8'   888   `8 `888' `888'     `8 \n" +
+            "\033[70C" + Colors.PURPLE_BOLD + "     888       888   888         \n" +
+            "\033[70C" + Colors.PURPLE_BOLD + "     888       888   888oooo8    \n" +
+            "\033[70C" + Colors.PURPLE_BOLD + "     888       888   888    \"    \n" +
+            "\033[70C" + Colors.PURPLE_BOLD + "     888       888   888       o \n" +
+            "\033[70C" + Colors.PURPLE_BOLD + "    o888o     o888o o888ooooood8 ";
+
+
+    //Display of the Beginning of the Fight
     public static void fightBanner() {
         try {
             Thread.sleep(1000);

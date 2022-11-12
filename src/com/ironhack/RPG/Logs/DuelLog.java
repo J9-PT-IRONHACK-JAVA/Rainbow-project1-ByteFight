@@ -3,38 +3,76 @@ package com.ironhack.RPG.Logs;
 import com.ironhack.RPG.Displays.DisplayCharacters;
 import com.ironhack.RPG.Model.Character;
 import com.ironhack.RPG.Model.Party;
+import com.ironhack.RPG.Model.Warrior;
+import com.ironhack.RPG.Model.Wizard;
+import com.ironhack.RPG.Utils.Banner;
 import com.ironhack.RPG.Utils.Colors;
+import com.ironhack.RPG.Utils.Emoji;
 
 public class DuelLog {
 
-                    //Shows the attack the characters will execute
+                    //Shows the attacks the characters will execute
     public static void displayAttack(int round, Character character1, Character character2 ){
 
-        System.out.println("ROUND " + round);
+        System.out.println("\033[120C" + Colors.YELLOW_BOLD + "[ROUND " + round + "]\n\n" + Colors.RESET);
+        System.out.print("\033[s");
+        System.out.print("\033[60C");
         displayAttackByCharacter(character1);
+        System.out.print("\033[u");
+        System.out.print("\033[130C");
         displayAttackByCharacter(character2);
 
     }
 
+                //Method that returns the attack of one fighter to de Method -> displayAttack: in this class
     public static void displayAttackByCharacter(Character character){
         if (character.getType().equals("warrior")){
+            System.out.print("Warrior " + character.getName() + " -> ");
             if (character.getIsStrongAttack()){
-                System.out.println("Is heavy attack");
+                System.out.print(Emoji.DAGGER + Colors.RED_BOLD + "  HEAVY ATTACK");
             }else{
-                System.out.println("Is weak attack");
+                System.out.print(Emoji.PUSH_PIN + Colors.BLUE_BOLD + "  WEAK ATTACK");
             }
         }else if (character.getType().equals("wizard")){
+            System.out.print("Wizard " + character.getName() + " -> ");
             if (character.getIsStrongAttack()){
-                System.out.println("Is fireball attack");
+                System.out.print(Emoji.ATTACK + Colors.RED_BOLD + "  FIREBALL ATTACK");
             }else{
-                System.out.println("Is staff hit attack");
+                System.out.print(Emoji.MAGIC_WAND + Colors.BLUE_BOLD + "  STAFF HIT ATTACK");
             }
+            System.out.print("\n\n\n\n");
+        }
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
                 //Shows the stats of the characters after the attack/round
-    public static void displayStats(int round, Character character1, Character character2){
-
+    public static void displayStats(Character character1, Character character2){
+        System.out.print("\033[80C" + Emoji.BLOOD + Colors.PURPLE_BOLD + "  Stats of the fighters after the attacks  " + Emoji.BLOOD +  "\n\n" +  Colors.RESET);
+        System.out.print(character1);
+        System.out.print("\n\n");
+        System.out.print(character2);
+        System.out.print("\n\n");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
+    //Shows the stats of the characters after the attack/round
+    public static void displayWinnerAndLooser(Character character1, Character character2){
+         if (!character1.isAlive() && !character2.isAlive()){
+             System.out.println(Banner.TIE);
+         }else{
+             System.out.println(Banner.WINNER);
+             if (!character1.isAlive()) DisplayCharacters.displayCharacterInfo(character2);
+             else if(!character2.isAlive()) DisplayCharacters.displayCharacterInfo(character1);
+             else System.out.println("something goes wrong.....");
+         }
+    }
+
 
             /*Displays the chosen characters for this battle -> BigImages without info*/
     public static void chosenCharacters(Character fighter1, Character fighter2){
@@ -53,14 +91,5 @@ public class DuelLog {
                     System.out.print(DisplayCharacters.WIZARD.get(i) + DisplayCharacters.VS.get(i) + DisplayCharacters.WIZARD.get(i) + "\n");
             System.out.println(Colors.RESET);
     }
-
-    //Shows the stats of the characters after the attack/round
-    public static void displayWinnerAndLooser(Character character1, Character character2){
-
-    }
-
-
-
-
 
 }

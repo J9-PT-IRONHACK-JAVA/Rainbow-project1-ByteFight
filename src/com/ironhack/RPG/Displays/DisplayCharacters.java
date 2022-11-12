@@ -88,7 +88,7 @@ public class DisplayCharacters {
                 Colors.WIZARD + "\t\t\t\t\t\t\t\t         (   ( .;''';. .'  )\n" +
                 "\t\t\t\t\t\t\t\t          _\\\"__ /    )\\ __\"/_\t\t\t\t\t" + Colors.RESET + "Mana:     " + wizard.getMana() + "\n" +
                 Colors.WIZARD + "\t\t\t\t\t\t\t\t            \\/  \\   ' /  \\/\n" +
-                "\t\t\t\t\t\t\t\t             .'  '...' ' )\t\t\t\t\t" + Colors.RESET + "Strength: " + wizard.getIntelligence() + "\n" +
+                "\t\t\t\t\t\t\t\t             .'  '...' ' )\t\t\t\t\t" + Colors.RESET + "Intelligence: " + wizard.getIntelligence() + "\n" +
                 Colors.WIZARD + "\t\t\t\t\t\t\t\t              / /  |  \\ \\\n" +
                 "\t\t\t\t\t\t\t\t             / .   .   . \\\n" +
                 "\t\t\t\t\t\t\t\t            /   .     .   \\\n" +

@@ -60,8 +60,8 @@ public  class Wizard extends Character implements Attacker{
     public String toString() {
         return "\033[100C" + Emoji.WIZARD + Colors.WIZARD + "    name: " + super.getName() + "\n\n" +
                 "\033[95C" + Colors.RESET + "hp: " + super.getHp() + "\t" +
-                "stamina: " + mana + "\t" +
-                "strength: " + intelligence;
+                "mana: " + mana + "\t" +
+                "intelligence: " + intelligence;
     }
 
 // random generators

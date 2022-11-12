@@ -27,32 +27,29 @@ public class Party {
             int randomWarriorOrWizard = ran.nextInt(2);
             if (randomWarriorOrWizard == 1) {
                 var warrior = new Warrior();//generate a random warrior
-                warrior = (Warrior) checkName(warrior);
+                checkName(warrior);
                 listCharacters.add(warrior);
 
             } else if (randomWarriorOrWizard == 0) { //Generate a random Wizard
                 var wizard = new Wizard();
-                wizard = (Wizard) checkName(wizard);
+                checkName(wizard);
                 listCharacters.add(wizard);
             }
-
         }
     }
-//Overload authomaticParty with a default size
+    //Overload authomaticParty with a default size
     public void authomaticParty() {
         int partySize = 15;
         Random ran = new Random();
-
         for (int i = 0; i < partySize; i++) {
-            int randomWarriroOrWizard = ran.nextInt(2);
-            if (randomWarriroOrWizard == 1) {
-                var warrior = new Warrior();//generate a random warrior
-                warrior = (Warrior) checkName(warrior);
+            int randomWarriorOrWizard = ran.nextInt(2);
+            if (randomWarriorOrWizard == 1) {
+                var warrior = new Warrior();//generates a random warrior
+                checkName(warrior);
                 listCharacters.add(warrior);
-
-            } else if (randomWarriroOrWizard == 0) { //Generate a random Wizard
-                var wizard = new Wizard();
-                wizard = (Wizard) checkName(wizard);
+            } else if (randomWarriorOrWizard == 0) { //Generate a random Wizard
+                var wizard = new Wizard();//generates a random wizard
+                checkName(wizard);
                 listCharacters.add(wizard);
             }
 
@@ -82,6 +79,11 @@ public class Party {
         listCharacters.add(character);
     }
 
+    public void removeCharacter(Character character) {
+
+            listCharacters.remove(character);
+    }
+
 
     //Return a character by the index, if index is out of Bounds, throw the Exception
     public Character getCharacterByIndex(int i) throws IndexOutOfBoundsException{
@@ -92,8 +94,6 @@ public class Party {
         }
     }
 
-
-
     //Method that compares the names of the list and return TRUE if name already exists
     public boolean containsName(String name){
         for(Character character : this.listCharacters){
@@ -102,26 +102,25 @@ public class Party {
         return false;
     }
 
-    public Character checkName(Character character) {
-        do{
-            if (containsName(character.getName()) && containsName(character.getName() + " Jr")) {
+
+    public void checkName(Character character) {
+        while ((containsName(character.getName()) || containsName(character.getName() + " Jr"))){
+            if (this.containsName(character.getName()) && this.containsName(character.getName().concat(" Jr"))) {
                 character.setName(character.nameGenerator());  //generates a new random name
-            } else if (containsName(character.getName()) &&  !containsName(character.getName() + " Jr")) {
-                character.setName(character.getName() + " Jr");
+            } else if (containsName(character.getName())) {
+                character.setName(character.getName().concat(" Jr"));
             }
-        } while ((containsName(character.getName()) || containsName(character.getName() + " Jr")));
-        return character;
+        }
     }
 
     //Returns the arrayList of the character of the party is passed,  thar are isAlive=FALSE;
-    public ArrayList<Character> getGraveyard(Party party){
+  /*  public ArrayList<Character> getGraveyard(){
         var graveyard = new ArrayList<Character>();
-        for (Character character: party.listCharacters){
+        for (Character character: this.listCharacters){
             if (!character.isAlive()){
                 graveyard.add(character);
             }
         }
         return graveyard;
-    }
-
+    }*/
 }
