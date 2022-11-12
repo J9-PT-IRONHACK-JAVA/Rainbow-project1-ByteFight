@@ -13,42 +13,6 @@ public class Log {
 //Initial information about the GAME
     public static void gameDescription(Scanner scanner){
 
-
-
-
-        /*
-        * In a universe existing amidst a dense
-mesh of silicon atoms, after aeons of normalcy and routine
-execution of logical operations,
-it's inhabitants finally discovered the possibility of
-doing something besides work.
-
-They gathered in an unused corner of their Condensed
-Possibilities Universe and started to tell tales about
-fictional warriors and wizards engaging in amazing battles.
-
-Soon, this merely narrative after-office activity
-became dull. The CPUnians needed more. The started crafting
-armors, weapons, suits and wands. Many learned to
-fight and cast spells.
-
-Well, you know... time goes by, things get a bit out hand,
-someone makes a drunken proposal, someone replies
-"you don't have the balls to do that" and...
-
-... now they meet to fight 'till death!!
-
-Two 1s come in... but one will leave converted into a 0.
-Who will it be? Come and find out!
-
-Welcome to...
-BYTEFIGHT!!!!!
-
-
-
-
-*/
-
         String paragraph1 = "In a universe existing amidst a dense\n" +
                 "\033[90C" + "mesh of silicon atoms, after aeons of normalcy and routine\n" +
                 "\033[90C" + "execution of logical operations,\n" +
