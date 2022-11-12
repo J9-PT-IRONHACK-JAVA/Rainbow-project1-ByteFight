@@ -79,9 +79,9 @@ public class Party {
         listCharacters.add(character);
     }
 
-    public void removeCharacter(Character character) {
+    public void removeCharacter(int index) {
 
-            listCharacters.remove(character);
+            listCharacters.remove(index);
     }
 
 
@@ -113,14 +113,4 @@ public class Party {
         }
     }
 
-    //Returns the arrayList of the character of the party is passed,  thar are isAlive=FALSE;
-  /*  public ArrayList<Character> getGraveyard(){
-        var graveyard = new ArrayList<Character>();
-        for (Character character: this.listCharacters){
-            if (!character.isAlive()){
-                graveyard.add(character);
-            }
-        }
-        return graveyard;
-    }*/
 }

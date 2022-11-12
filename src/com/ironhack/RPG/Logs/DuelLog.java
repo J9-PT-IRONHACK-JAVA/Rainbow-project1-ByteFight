@@ -14,7 +14,7 @@ public class DuelLog {
                     //Shows the attacks the characters will execute
     public static void displayAttack(int round, Character character1, Character character2 ){
 
-        System.out.println("\033[120C" + Colors.YELLOW_BOLD + "[ROUND " + round + "]\n\n" + Colors.RESET);
+        System.out.println("\033[110C" + Colors.YELLOW_BOLD + "[ROUND " + round + "]\n\n" + Colors.RESET);
         System.out.print("\033[s");
         System.out.print("\033[60C");
         displayAttackByCharacter(character1);
@@ -29,16 +29,16 @@ public class DuelLog {
         if (character.getType().equals("warrior")){
             System.out.print("Warrior " + character.getName() + " -> ");
             if (character.getIsStrongAttack()){
-                System.out.print(Emoji.DAGGER + Colors.RED_BOLD + "  HEAVY ATTACK");
+                System.out.print(Emoji.DAGGER + Colors.RED_BOLD + "  HEAVY ATTACK\n\n");
             }else{
-                System.out.print(Emoji.PUSH_PIN + Colors.BLUE_BOLD + "  WEAK ATTACK");
+                System.out.print(Emoji.PUSH_PIN + Colors.BLUE_BOLD + "  WEAK ATTACK\n\n");
             }
         }else if (character.getType().equals("wizard")){
             System.out.print("Wizard " + character.getName() + " -> ");
             if (character.getIsStrongAttack()){
-                System.out.print(Emoji.ATTACK + Colors.RED_BOLD + "  FIREBALL ATTACK");
+                System.out.print(Emoji.ATTACK + Colors.RED_BOLD + "  FIREBALL ATTACK\n\n");
             }else{
-                System.out.print(Emoji.MAGIC_WAND + Colors.BLUE_BOLD + "  STAFF HIT ATTACK");
+                System.out.print(Emoji.MAGIC_WAND + Colors.BLUE_BOLD + "  STAFF HIT ATTACK\n\n");
             }
             System.out.print("\n\n\n\n");
         }

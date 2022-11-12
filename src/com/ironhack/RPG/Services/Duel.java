@@ -35,20 +35,20 @@ public class Duel {
         DuelLog.displayWinnerAndLooser(character1,character2);
     }
 
-    public static void actualizePartyAndGraveyard(Party party1, Party party2, Graveyard graveyard){
-        for(Character character : party1.getTeam()){
-            if (!character.isAlive()){
-                graveyard.addToGraveyard(character);
-             //   party1.removeCharacter(character);
 
-            }
-        }
-        for(Character character : party2.getTeam()){
-            if (!character.isAlive()){
-                graveyard.addToGraveyard(character);
-              //  party2.removeCharacter(character);
-            }
+    public static void actualizePartyAndGraveyard(Party party1, Party party2, Graveyard graveyard){
+    for(int i =0; i< party1.getPartySize();i++){
+        if (!party1.getCharacterByIndex(i).isAlive()){
+            graveyard.addToGraveyard(party1.getCharacterByIndex(i));
+            party1.removeCharacter(i);
         }
     }
+    for(int i =0; i< party2.getPartySize();i++){
+        if (!party2.getCharacterByIndex(i).isAlive()){
+            graveyard.addToGraveyard(party2.getCharacterByIndex(i));
+            party2.removeCharacter(i);
+        }
+    }
+}
 
 }

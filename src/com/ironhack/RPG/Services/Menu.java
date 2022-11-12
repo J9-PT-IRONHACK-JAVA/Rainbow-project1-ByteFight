@@ -2,6 +2,7 @@ package com.ironhack.RPG.Services;
 
 
 import com.ironhack.RPG.Displays.DisplayCharacters;
+import com.ironhack.RPG.Displays.DisplayGraveyard;
 import com.ironhack.RPG.Logs.PartyLog;
 import com.ironhack.RPG.Model.Character;
 import com.ironhack.RPG.Model.Graveyard;
@@ -71,7 +72,7 @@ public class Menu {
                 choice = scanner.nextLine();
             }
             if (choice.equals("0")) {
-                graveyard.displayGraveyard();
+                DisplayGraveyard.displayPartyGraveyard(graveyard);
                 System.out.println("\033[90C" + Colors.CYAN_BOLD + Emoji.FINGER + "  Press " +
                         Colors.GREEN_BOLD + "[ENTER] " + Colors.CYAN_BOLD + "to continue...\n\n" + Colors.RESET);
                 System.out.print("\033[110C");
@@ -80,6 +81,15 @@ public class Menu {
                             "[ENTER] " + Colors.CYAN_BOLD + "to continue\n\n" + Colors.RESET);
             }
             Menu.clean();
+        }
+        if (party1.getPartySize() == 0){
+            System.out.println(Banner.WINNER);
+            System.out.println("\033[90C" + Colors.PURPLE_BOLD + " Our WINNER today is: " + Colors.YELLOW_BOLD + party2.getPartyName() + Colors.RESET);
+        }else if (party2.getPartySize() == 0){
+            System.out.println(Banner.WINNER);
+            System.out.println("\033[90C" + Colors.PURPLE_BOLD + " Our WINNER today is: " + Colors.YELLOW_BOLD + party1.getPartyName() + Colors.RESET);
+        }else {
+            System.out.println(Banner.TIE);
         }
 
     }

@@ -64,7 +64,7 @@ public class Banner {
             "\033[70C" + Colors.PURPLE_BOLD + "     888       888   888oooo8    \n" +
             "\033[70C" + Colors.PURPLE_BOLD + "     888       888   888    \"    \n" +
             "\033[70C" + Colors.PURPLE_BOLD + "     888       888   888       o \n" +
-            "\033[70C" + Colors.PURPLE_BOLD + "    o888o     o888o o888ooooood8 ";
+            "\033[70C" + Colors.PURPLE_BOLD + "    o888o     o888o o888ooooood8 \n\n\n" + Colors.RESET;
 
 
     //Display of the Beginning of the Fight
