@@ -2,7 +2,6 @@ package com.ironhack.RPG.Services;
 
 
 import com.ironhack.RPG.Displays.DisplayCharacters;
-import com.ironhack.RPG.Logs.DuelLog;
 import com.ironhack.RPG.Logs.PartyLog;
 import com.ironhack.RPG.Model.Character;
 import com.ironhack.RPG.Model.Party;
@@ -10,8 +9,6 @@ import com.ironhack.RPG.Utils.Banner;
 import com.ironhack.RPG.Logs.Log;
 import com.ironhack.RPG.Utils.Colors;
 import com.ironhack.RPG.Utils.Emoji;
-
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Menu {
@@ -42,7 +39,7 @@ public class Menu {
         }
         Menu.clean();
         switch (Integer.parseInt(choice)) {
-            case 0 -> ManualParty.manuallyCreateBothParties();
+            case 0 -> ManualParty.manuallyCreateBothParties(scanner, party1, party2);
             case 1 -> AutomaticPartyCreator.autoCreator(scanner, party1, party2);
             case 2 -> AutomaticPartyCreator.fromCsvCreator(scanner, party1, party2);
             default -> System.out.println("An error has occurred");
@@ -93,7 +90,7 @@ public class Menu {
     //    System.out.print("\033[s");
         System.out.print("\033[110C");
         String characterIndex = scanner.nextLine();
-        while (!validValue(characterIndex, party.getPartySize()) || characterIndex.equalsIgnoreCase("show")) {
+        while (!validValue(characterIndex, party.getPartySize(), 1) || characterIndex.equalsIgnoreCase("show")) {
             if (characterIndex.equalsIgnoreCase("show")) {
                 clean();
                 PartyLog.displayParty(party);
@@ -117,81 +114,20 @@ public class Menu {
         return index;
     }
 
-    /*Private method that allows check the input before casting it to Number in order to avoid Exceptions ->
+    /*method that allows check the input before casting it to Number in order to avoid Exceptions ->
     is used in the METHOD: TryFightersForBattle, in this File*/
-    private static boolean validValue(String characterIndex, int partyLength){
+    public static boolean validValue(String characterIndex, int max, int min){
         if (!characterIndex.matches("[0-9]+"))
             return false;
-        return (Integer.parseInt(characterIndex) <= (partyLength) && Integer.parseInt(characterIndex) >= 1);
+        return (Integer.parseInt(characterIndex) <= (max) && Integer.parseInt(characterIndex) >= min);
     }
+
+
 
     public static void clean() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
-
-
-
-/* public static void tryFighterForBattle(Scanner scanner){
-        //First FIGHTER
-clean();
-        System.out.println("\n\n\n\n" + "\033[85C" + Colors.CYAN_BOLD + "Choose a character from the First Party for the Fight\n\n");
-        try {
-        Thread.sleep(2000);
-    } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-    }
-        PartyLog.displayParty(party1);
-    //While receives the index, the private method getCharacterIndex displays the character selections, and the character completeInfo
-    int index = getCharacterIndex(scanner, party1);
-    Character character1 = party1.getCharacterByIndex(index);
-
-    //Continue with the second character selection
-        System.out.println("\033[90C" + Colors.CYAN_BOLD + Emoji.FINGER + "  Press [ENTER] to continue...\n\n" + Colors.RESET);
-        System.out.print("\033[s");
-        System.out.print("\033[110C");
-        while (!scanner.nextLine().equals("")){
-        System.out.print("\033[u");
-        Menu.clean();
-        System.out.println("\n\n");
-        System.out.print("\033[s");
-        System.out.println("033[95C" + Emoji.CROSS_MARK + "  Invalid INPUT. You must press [ENTER] to continue\n\n");
-        System.out.print("\033[110C");
-    }
-    clean();
-    //Second FIGHTER
-        System.out.println("\n\n\n\n" + "\033[85C" + Colors.CYAN_BOLD + "Choose a character from the Second Party for the Fight\n\n");
-        try {
-        Thread.sleep(2000);
-    } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-    }
-        PartyLog.displayParty(party2);
-
-    //While receives the index, the private method getCharacterIndex displays the character selections, and the character completeInfo
-    index = getCharacterIndex(scanner, party2);
-    Character character2 = party2.getCharacterByIndex(index);
-        System.out.println("\033[90C" + Colors.CYAN_BOLD + Emoji.FINGER + "  Press [ENTER] to START the FIGHT!\n\n" + Colors.RESET);
-        System.out.print("\033[s");
-        System.out.print("\033[110C");
-        while (!scanner.nextLine().equals("")){
-        System.out.print("\033[u");
-        clean();
-        System.out.println("\n\n");
-        System.out.print("\033[s");
-        System.out.println("033[95C" + Emoji.CROSS_MARK + "  Invalid INPUT. Press [ENTER] to START the FIGHT!\n\n");
-        System.out.print("\033[110C");
-    }
-    clean();
-        Banner.fightBanner();
-        try {
-        Duel.duel(character1, character2);
-    } catch (InterruptedException e) {
-        throw new RuntimeException(e.getMessage());
-    }
-}*/
-
-
 }
 
-/**/
+

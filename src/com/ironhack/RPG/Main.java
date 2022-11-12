@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        Menu.welcome(scanner);
+     //   Menu.welcome(scanner);
         Menu.howPartyWillBeCreated(scanner);
         Menu.tryFighterForBattle(scanner);
         scanner.close();
