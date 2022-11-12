@@ -2,9 +2,6 @@ package com.ironhack.RPG.Logs;
 
 import com.ironhack.RPG.Displays.DisplayCharacters;
 import com.ironhack.RPG.Model.Character;
-import com.ironhack.RPG.Model.Party;
-import com.ironhack.RPG.Model.Warrior;
-import com.ironhack.RPG.Model.Wizard;
 import com.ironhack.RPG.Utils.Banner;
 import com.ironhack.RPG.Utils.Colors;
 import com.ironhack.RPG.Utils.Emoji;
@@ -15,9 +12,9 @@ public class DuelLog {
     public static void displayAttack(int round, Character character1, Character character2 ){
 
         System.out.println("\033[105C" + Colors.YELLOW_BOLD + "[ROUND " + round + "]\n\n" + Colors.RESET);
-        System.out.print("\033[90C");
+        System.out.print("\033[95C");
         displayAttackByCharacter(character1);
-        System.out.print("\033[90C");
+        System.out.print("\033[95C");
         displayAttackByCharacter(character2);
 
     }
@@ -51,7 +48,7 @@ public class DuelLog {
         System.out.print(character1);
         System.out.print("\n\n\n");
         System.out.print(character2);
-        System.out.print("\n\n\n");
+        System.out.print("\n\n\n\n\n\n");
         try {
             Thread.sleep(500);
         } catch (InterruptedException e) {

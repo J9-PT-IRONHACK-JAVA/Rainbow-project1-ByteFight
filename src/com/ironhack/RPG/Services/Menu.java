@@ -135,9 +135,9 @@ public class Menu {
                 System.out.print("\033[110C");
             }else{
                 Log.errorInputLog("\033[80C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD + "  Invalid INPUT. Enter a number between " +
-                        Colors.YELLOW_BOLD + "[" + 1 + "]" + Colors.CYAN_BOLD + " and " + party.getPartySize() + ", and press " +
-                        Colors.GREEN_BOLD + "[ENTER]\n\n" + Colors.RESET + "\033[85C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Enter " +
-                        Colors.GREEN_BOLD + "[SHOW]" + Colors.CYAN_BOLD + " if you want to see all party\n\n" + Colors.RESET);
+                        Colors.YELLOW_BOLD + "[" + 1 + "]" + Colors.CYAN_BOLD + " and " + Colors.YELLOW_BOLD + "[" + party.getPartySize() + "]" +
+                        Colors.CYAN_BOLD + ", and press " + Colors.GREEN_BOLD + "[ENTER]\n\n" + Colors.RESET + "\033[85C" + Emoji.FINGER +
+                        Colors.CYAN_BOLD + "  Enter " + Colors.GREEN_BOLD + "[SHOW]" + Colors.CYAN_BOLD + " if you want to see all party\n\n" + Colors.RESET);
             }
             characterIndex = scanner.nextLine();
         }
