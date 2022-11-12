@@ -18,7 +18,7 @@ public class Log {
                 "\033[90C" + "execution of logical operations,\n" +
                 "\033[90C" + "it's inhabitants finally discovered the possibility of\n" +
                 "\033[90C" + "doing something besides work.";
-        String paragraph2 = "hey gathered in an unused corner of their Condensed \n" +
+        String paragraph2 = "They gathered in an unused corner of their Condensed \n" +
                 "\033[90C" + "Possibilities Universe and started to tell tales about \n" +
                 "\033[90C" + "fictional warriors and wizards engaging in amazing battles.";
         String paragraph3 = "Soon, this merely narrative after-office activity \n" +
