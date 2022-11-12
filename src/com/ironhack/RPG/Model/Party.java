@@ -39,7 +39,7 @@ public class Party {
     }
     //Overload authomaticParty with a default size
     public void authomaticParty() {
-        int partySize = 15;
+        int partySize = 3;
         Random ran = new Random();
         for (int i = 0; i < partySize; i++) {
             int randomWarriorOrWizard = ran.nextInt(2);
