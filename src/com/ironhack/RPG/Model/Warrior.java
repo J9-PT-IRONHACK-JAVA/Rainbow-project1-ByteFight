@@ -9,30 +9,25 @@ public class Warrior extends Character implements Attacker{
 
     private int stamina;
     private int strength;
-    private static boolean isStrongAttack;
-
-
+    private boolean isStrongAttack;
 
 // warrior attack (implements attack from interface).
     @Override
     public void attack(Character attackedCharacter) {
         int damage;
 
-        if (this.stamina >= 5) {
-            setIsStrongAttack(true);
+        if (getIsStrongAttack()) {
             damage = getStrength();
-
-            attackedCharacter.setHp(attackedCharacter.getHp() - this.strength);
+            attackedCharacter.setHp(attackedCharacter.getHp() - damage);
             if (attackedCharacter.getHp() <= 0) {
                 attackedCharacter.setAlive(false);
             }
 
             setStamina(this.stamina - 5);
         } else {
-            setIsStrongAttack(false);
             damage = getStrength() / 2;
 
-            attackedCharacter.setHp(attackedCharacter.getHp() - (this.strength / 2));
+            attackedCharacter.setHp(attackedCharacter.getHp() - damage);
             if (attackedCharacter.getHp() <= 0) {
                 attackedCharacter.setAlive(false);
             }
@@ -92,11 +87,12 @@ public class Warrior extends Character implements Attacker{
     }
 
 
-    public static boolean getIsStrongAttack() {
-        return isStrongAttack;
+    @Override
+    public boolean getIsStrongAttack() {
+        return this.stamina >= 5;
     }
 
-   public void setStamina(int stamina) {
+    public void setStamina(int stamina) {
 
         if (stamina >= 10 && stamina <=50 ) {
             this.stamina = stamina;
@@ -110,7 +106,4 @@ public class Warrior extends Character implements Attacker{
         this.strength = strength;
     }
 
-    public static void setIsStrongAttack(boolean isStrongAttack) {
-        Warrior.isStrongAttack = isStrongAttack;
-    }
 }

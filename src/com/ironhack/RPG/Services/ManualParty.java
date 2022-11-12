@@ -1,187 +1,250 @@
 package com.ironhack.RPG.Services;
 
 import com.ironhack.RPG.Displays.DisplayCharacters;
+import com.ironhack.RPG.Logs.Log;
+import com.ironhack.RPG.Logs.PartyLog;
 import com.ironhack.RPG.Model.Party;
 import com.ironhack.RPG.Model.Warrior;
 import com.ironhack.RPG.Model.Wizard;
+import com.ironhack.RPG.Model.Character;
+import com.ironhack.RPG.Utils.Banner;
+import com.ironhack.RPG.Utils.Colors;
+import com.ironhack.RPG.Utils.Emoji;
 
 import java.util.Scanner;
 
 public class ManualParty {
-    static Integer partiesSize = null;
-    static boolean isParty1Created = false;
-    static Party party1;
-    static Party party2;
-    static Warrior warrior;
-    static Wizard wizard;
-
-
-    public static void manuallyCreateBothParties() {
-        askPartyNameAndLength_BuildParty();
-        for (int i = 0; i < partiesSize; i++) {
-            askDetails_BuildCharacter_And_AddToParty(party1);
+    public static void manuallyCreateBothParties(Scanner scanner, Party party1, Party party2) {
+        int partySize;
+        partySize = askPartyNameAndLength_BuildParty(scanner, party1, 0);
+        for (int i = 0; i < partySize; i++) {
+            askDetails_BuildCharacter_And_AddToParty(scanner, party1, (partySize - i));
         }
-        askPartyNameAndLength_BuildParty();
-        for (int i = 0; i < partiesSize; i++) {
-            askDetails_BuildCharacter_And_AddToParty(party2);
+        System.out.println("\n" + "\033[95C" + Emoji.OK + Colors.PURPLE_BOLD + " The FIRST party is Created!\n\n " + Colors.RESET);
+        PartyLog.displayParty(party1);
+        Banner.partyCreatorConfirmation();
+        System.out.println("\033[90C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Press " + Colors.GREEN_BOLD +  "[ENTER] " +
+                Colors.CYAN_BOLD + "to create the second Party\n\n" + Colors.RESET);
+        System.out.print("\033[110C");
+        while (!scanner.nextLine().equals(""))
+            Log.errorInputLog("\033[90C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD + "  Invalid INPUT. Press " + Colors.GREEN_BOLD + "[ENTER] " +
+                    Colors.CYAN_BOLD + "to continue\n\n" + Colors.RESET);
+
+        partySize = askPartyNameAndLength_BuildParty(scanner, party2, partySize);
+        for (int i = 0; i < partySize; i++) {
+            askDetails_BuildCharacter_And_AddToParty(scanner, party2, (partySize - i));
         }
+        System.out.println("\n" + "\033[95C" + Emoji.OK + Colors.PURPLE_BOLD + " The SECOND party is Created!\n\n " + Colors.RESET);
+        PartyLog.displayParty(party2);
+        Banner.partyCreatorConfirmation();
+        System.out.println("\033[90C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Press " + Colors.GREEN_BOLD +  "[ENTER] " +
+                Colors.CYAN_BOLD + "to START the Fight\n\n" + Colors.RESET);
+        System.out.print("\033[110C");
+        while (!scanner.nextLine().equals(""))
+            Log.errorInputLog("\033[90C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD + "  Invalid INPUT. Press " + Colors.GREEN_BOLD + "[ENTER] " +
+                    Colors.CYAN_BOLD + "to continue\n\n" + Colors.RESET);
     }
 
-    public static void askPartyNameAndLength_BuildParty() {
-        var sc = new Scanner(System.in);
-        String userInput = sc.nextLine();
+    //Party preparing for fill
+    public static int askPartyNameAndLength_BuildParty(Scanner scanner, Party party, int size) {
 
-        if (isParty1Created == false) {
-            System.out.println("Please enter a name for your party/team...");
-            String partyName = userInput;
-            party1 = new Party(partyName);
-            System.out.println("Party " + party1.getPartyName() + " has been created.\n" + "Next, please set the size (number of players)" +
-                    "of your party. It must be between 3 and 20 players.\n");
-            // TO-DO: change sout for call to a log method that prints party created to screen
-            isParty1Created = true;
-
-            while (partiesSize == null) {
-                System.out.println("Please, input the desired size as a number: ");
-                if ((Integer.parseInt(userInput) >= 3 && Integer.parseInt(userInput) <= 20)) {
-                    partiesSize = Integer.parseInt(userInput);
-                } else {
-                    partiesSize = null;
-                }
-            }
-            System.out.println("Thanks! The size for party " + party1.getPartyName() + " was set to " + partiesSize +
-                    "\nRemember that both teams/parties will have the same size..." +
-                    "\nWe are now ready to create the players for your first party...");
-
-        } else if (isParty1Created) {
-            System.out.println("Please enter a name for your party/team...");
-            String partyName = userInput;
-            party2 = new Party(partyName);
-            System.out.println("Party " + party2.getPartyName() + " has been created.\n" + "To match the size of the other party, the " +
-                    "size (number of players) of this party must be " + partiesSize);
-            // TO-DO: change sout for call to a log method that prints party created to screen
-
-            System.out.println("We are now ready to create the players for your second party...");
+            //Party NAME
+        System.out.println("\n" + "\033[90C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Please enter a name for your party/team\n\n" + Colors.RESET);
+        System.out.print("\033[110C");
+        String name = scanner.nextLine();
+        while (name.length() < 1) {
+            Log.errorInputLog("\n\n" + "\033[80C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD +
+                    "  Invalid INPUT. The name has to contains at least " + Colors.YELLOW_BOLD + "[" +  1 + "]" +
+                            Colors.CYAN_BOLD + " character\n\n" + Colors.RESET);
+            name = scanner.nextLine();
         }
+        Menu.clean();
+        party.setPartyName(name);
 
-        sc.close();
+            //Party SIZE
+        if (size == 0){
+            System.out.println("\n" + "\033[95C" + Emoji.OK + Colors.PURPLE_BOLD + " Party " +
+                    Colors.YELLOW_BOLD + "[" + party.getPartyName() + "]" + Colors.CYAN_BOLD + "  has been created.\n" +
+                    Colors.RESET);
+            System.out.println("\n" + "\033[70C" + Emoji.FINGER + Colors.CYAN_BOLD +
+                    "  Next, please set the size (number of players) of your party. It must be between " + Colors.YELLOW_BOLD + "[" + 3 + "]" +
+                            Colors.CYAN_BOLD + " and " + Colors.YELLOW_BOLD + "[" + 20 + "]" + Colors.CYAN_BOLD + " players.\n\n" + Colors.RESET);
+            System.out.print("\033[110C");
+            String partySize = scanner.nextLine();
+            while (!Menu.validValue(partySize, 20, 3)) {
+                Log.errorInputLog("\033[80C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD + "  Invalid INPUT. Enter a number between " +
+                                Colors.YELLOW_BOLD + "[" + 3 + "]" + Colors.CYAN_BOLD + " and " +
+                                Colors.YELLOW_BOLD + "[" + 20 + "]" + Colors.CYAN_BOLD + ", and press " +
+                        Colors.GREEN_BOLD + "[ENTER]\n\n" + Colors.RESET);
+                partySize = scanner.nextLine();
+            }
+            size = Integer.parseInt(partySize);
+        }
+        Menu.clean();
+        System.out.println("\n\n" + "\033[85C" + Emoji.OK + Colors.PURPLE_BOLD + "  Thanks! The size for party " + party.getPartyName() +
+                " was set to " + Colors.YELLOW_BOLD + "[" + size + "]" + "\n" + Colors.RESET);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("\n\n" + "\033[85C" + Colors.GREEN_BOLD + "Remember that both teams/parties will have the same size!" + Colors.RESET);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("\n\n" + "\033[85C" + Colors.GREEN_BOLD +  "We are now ready to create the players for this party!" + Colors.RESET);
+        return size;
     }
 
-
-    public static void askDetails_BuildCharacter_And_AddToParty(Party partyToFill) {
-        String charType = null;
-        String charName = null;
-        Integer charHp = null;
-        Integer charForce = null; // strength for warrior; intelligence for wizard.
-        Integer charEnergy = null; // stamina for warrior; mana for wizard.
-        var sc = new Scanner(System.in);
-        String userInput = sc.nextLine();
-
-        // ask & store character type
-        while (charType == null) {
-            System.out.println("Please select the type of character to create...\n" +
-                    "   [0] warrior\n" +
-                    "   [1] wizard\n");
-            if (userInput == "0") {
-                charType = "warrior";
-            } else if (userInput == "1") {
-                charType = "wizard";
-            } else {
-                charType = null;
-            }
+    //Create Characters and fills the party
+    public static void askDetails_BuildCharacter_And_AddToParty(Scanner scanner, Party party, int size) {
+        Menu.clean();
+        String type = insertType(scanner);
+        String name = insertName(type, scanner);
+        Menu.clean();
+        int hp = insertHp(type, scanner);
+        Menu.clean();
+        int force = insertForce(type, scanner);
+        Menu.clean();
+        int energy = insertEnergy(type, scanner);
+        if (type.equals("warrior")){
+            Character character = new Warrior(type, name, hp, energy, force);
+            party.addCharacter(character);
+            DisplayCharacters.displayCharacterInfo(character);
+        }else if (type.equals("wizard")){
+            Character character = new Wizard(type, name, hp, energy, force);
+            party.addCharacter(character);
+            DisplayCharacters.displayCharacterInfo(character);
         }
-
-        // ask & store character name
-        while (charName == null) {
-            System.out.println("Please, input a name for your " + charType + "player.");
-            charName = userInput;
-        }
-
-        // ask & store character HP
-        while (charHp == null) {
-            if (charType == "warrior") {
-                System.out.println("Please input the desired health points for your 'warrior' player\"" +
-                        "you may input values between 100 and 200");
-                if ((Integer.parseInt(userInput) >= 100) && (Integer.parseInt(userInput) <= 200)) {
-                    charHp = Integer.parseInt(userInput);
-                } else {
-                    charHp = null;
-                }
-
-            } else if (charType == "wizard") {
-                System.out.println("Please input the desired health points for your 'wizard' player\"" +
-                        "you may input values between 50 and 100");
-
-                if ((Integer.parseInt(userInput) >= 50) && (Integer.parseInt(userInput) <= 100)) {
-                    charHp = Integer.parseInt(userInput);
-                } else {
-                    charHp = null;
-                }
-
-            }
-
-        }
-
-
-        // ask & store character 'force' (strength-intelligence)
-        while (charForce == null) {
-            if (charType == "warrior") {
-                System.out.println("Please input the desired strength for your 'warrior' player\"" +
-                        "you may input values between 1 and 10");
-                if ((Integer.parseInt(userInput) >= 1) && (Integer.parseInt(userInput) <= 10)) {
-                    charForce = Integer.parseInt(userInput);
-                } else {
-                    charForce = null;
-                }
-
-            } else if (charType == "wizard") {
-                System.out.println("Please input the desired strength for your 'wizard' player\"" +
-                        "you may input values between 1 and 50");
-
-                if ((Integer.parseInt(userInput) >= 1) && (Integer.parseInt(userInput) <= 50)) {
-                    charForce = Integer.parseInt(userInput);
-                } else {
-                    charForce = null;
-                }
-
-            }
-
-        }
-
-
-        // ask & store character 'energy' (stamina-mana)
-        while (charEnergy == null) {
-            System.out.println("Please input the desired stamina for your player\"" +
-                    "you may input values between 10 and 50");
-            if ((Integer.parseInt(userInput) >= 10) && (Integer.parseInt(userInput) <= 50)) {
-                charEnergy = Integer.parseInt(userInput);
-            } else {
-                charEnergy = null;
-            }
-        }
-        sc.close();
-
-        // create Character (pass variables to constructor)
-        if (charType == "warrior") {
-            warrior = new Warrior(charType, charName, charHp, charEnergy, charForce);
-
-            DisplayCharacters.displayWarriorInfo(warrior); // Alissia's display character
-        } else if (charType == "wizard") {
-            wizard = new Wizard(charType, charName, charHp, charEnergy, charForce);
-
-            DisplayCharacters.displayWizardInfo(wizard); // Alissia's display character
-        }
-
-
-        // add Character to Party & confirm addition
-        if (charType == "warrior") {
-            partyToFill.addCharacter(warrior);
-            // TO-DO: add call to log to display confirmation
-        } else if (charType == "wizard") {
-            partyToFill.addCharacter(wizard);
-            // TO-DO: add call to log to display confirmation
-        }
-
-
+        System.out.println("\033[95C" + Colors.PURPLE_BOLD + Emoji.NEW_MEMBER + "  " + size + " characters left to create\n\n" + Colors.RESET);
+        System.out.println("\033[95C" + Colors.CYAN_BOLD + Emoji.FINGER + "  Press " +
+                Colors.GREEN_BOLD + "[ENTER] " + Colors.CYAN_BOLD + "to continue...\n\n" + Colors.RESET);
+        System.out.print("\033[110C");
+        while (!scanner.nextLine().equals(""))
+            Log.errorInputLog("\033[90C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD + "  Invalid INPUT. You must press " + Colors.GREEN_BOLD +
+                    "[ENTER] " + Colors.CYAN_BOLD +  "to continue\n\n" + Colors.RESET);
+        Menu.clean();
     }
+
+                    //Character TYPE
+    private static String insertType(Scanner scanner){
+        System.out.println("\n" + "\033[85C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Please select the type of character to create\n\n" + Colors.RESET);
+        System.out.println("\033[95C" + Colors.CYAN_BOLD + "[0] Warrior\t\t[1] Wizard\n\n" + Colors.RESET);
+        System.out.print("\033[110C");
+        String type = scanner.nextLine();
+        while (!(type.equals("0") || type.equals("1"))) {
+            Log.errorInputLog("\n\n" + "\033[80C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD +
+                    "  Invalid INPUT. Choose one of the next options and press " + Colors.GREEN_BOLD + "[ENTER]\n\n" +
+                    "\033[100C" + Colors.CYAN_BOLD + "[0] Warrior\t\t[1] Wizard\n\n" + Colors.RESET);
+            type = scanner.nextLine();
+        }
+        Menu.clean();
+        return (type.equals("0") ? "warrior" : "wizard");
+    }
+
+                    //Character NAME
+    private static String insertName(String type, Scanner scanner){
+        System.out.println("\n" + "\033[90C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Please, input the name for your " +
+                Colors.YELLOW_BOLD + "[" + type + "]" + Colors.CYAN_BOLD + " player\n\n" + Colors.RESET);
+        System.out.print("\033[110C");
+        String name = scanner.nextLine();
+        while (name.length() < 1) {
+            Log.errorInputLog("\n\n" + "\033[80C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD +
+                    "  Invalid INPUT. The name has to contains at least " + Colors.YELLOW_BOLD + "[" + 1 + "]" + Colors.CYAN_BOLD + " character\n\n" + Colors.RESET);
+            name = scanner.nextLine();
+        }
+        Menu.clean();
+        return name;
+    }
+
+                                //Character HP
+     private static int insertHp(String type, Scanner scanner){
+        String hp = "";
+        if (type.equals("warrior")){
+            System.out.println("\n" + "\033[80C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Please input the desired health points for your " +
+                    Colors.YELLOW_BOLD + "[" + type + "]" + Colors.CYAN_BOLD + " player\n\n" + "\033[95C" + "you may input values between " +
+                            Colors.YELLOW_BOLD + "[" + 100 + "]" + Colors.CYAN_BOLD + " and " + Colors.YELLOW_BOLD + "[" + 200 + "]\n\n" + Colors.RESET);
+            System.out.print("\033[110C");
+            hp = scanner.nextLine();
+            while (!Menu.validValue(hp, 200, 100)) {
+                Log.errorInputLog("\033[80C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD + "  Invalid INPUT. Enter a number between " +
+                                Colors.YELLOW_BOLD + "[" + 100 + "]" + Colors.CYAN_BOLD + " and " +
+                                Colors.YELLOW_BOLD + "[" + 200 + "]" + Colors.CYAN_BOLD + ", and press " +
+                        Colors.GREEN_BOLD + "[ENTER]\n\n" + Colors.RESET);
+                hp = scanner.nextLine();
+            }
+        }else if (type.equals("wizard")){
+            System.out.println("\n" + "\033[80C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Please input the desired health points for your " +
+                    type + " player\n\n" + "\033[95C" + "you may input values between " Colors.YELLOW_BOLD + "[" + 50 + "]" +
+                            Colors.CYAN_BOLD + " and "  + Colors.YELLOW_BOLD + "[" +  100 + "]n\n" + Colors.RESET);
+            System.out.print("\033[110C");
+            hp = scanner.nextLine();
+            while (!Menu.validValue(hp, 100, 50)) {
+                Log.errorInputLog("\033[80C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD + "  Invalid INPUT. Enter a number between " +
+                                Colors.YELLOW_BOLD + "[" + 50 + "]" + Colors.CYAN_BOLD + " and " +
+                                Colors.YELLOW_BOLD + "[" + 100 + "]" + Colors.CYAN_BOLD + ", and press " +
+                        Colors.GREEN_BOLD + "[ENTER]\n\n" + Colors.RESET);
+                hp = scanner.nextLine();
+            }
+        }
+         Menu.clean();
+         return Integer.parseInt(hp);
+    }
+
+    // ask & store character 'energy' (stamina-mana)
+    private static int insertEnergy(String type, Scanner scanner) {
+        System.out.println("\n" + "\033[90C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Please, input the energy for your " +
+                Colors.YELLOW_BOLD + "[" + type + "]" + Colors.CYAN_BOLD + " player\n\n" + Colors.RESET);
+        System.out.println("\033[95C" + Colors.CYAN_BOLD +  "You may input values between " + Colors.YELLOW_BOLD + "[" + 10 + "]" +
+                Colors.CYAN_BOLD + " and " + Colors.YELLOW_BOLD + "[" + 50 + "]\n" + Colors.RESET);
+        System.out.print("\033[110C");
+        String energy = scanner.nextLine();
+        while (!Menu.validValue(energy, 50, 10)) {
+            Log.errorInputLog("\033[80C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD + "  Invalid INPUT. Enter a number between " +
+                    Colors.YELLOW_BOLD + "[" + 10 + "]" + Colors.CYAN_BOLD + " and " +
+                    Colors.YELLOW_BOLD + "[" + 50 + "]" + Colors.CYAN_BOLD + ", and press " +
+                    Colors.GREEN_BOLD + "[ENTER]\n\n" + Colors.RESET);
+            energy = scanner.nextLine();
+        }
+        Menu.clean();
+        return Integer.parseInt(energy);
+    }
+
+                        // ask & store character 'force' (strength-intelligence)
+    private static int insertForce(String type, Scanner scanner) {
+        String userInput = "";
+        if (type.equals("warrior")) {
+            System.out.println("\n" + "\033[80C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Please input the desired strength for your " +
+                    Colors.YELLOW_BOLD + "[" + type + "]" + Colors.CYAN_BOLD + " player\n" +
+                    "\033[95C" + "you may input values between 1 and 10\n\n" + Colors.RESET);
+            System.out.print("\033[110C");
+            userInput = scanner.nextLine();
+            while (!Menu.validValue(userInput, 10, 1)) {
+                Log.errorInputLog("\033[80C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD + "  Invalid INPUT. Enter a number between " +
+                                Colors.YELLOW_BOLD + "[" + 1 + "]" + Colors.CYAN_BOLD + " and " + Colors.YELLOW_BOLD + "[" + 10 + "]" +
+                        Colors.CYAN_BOLD + "and press " + Colors.GREEN_BOLD + "[ENTER]\n\n" + Colors.RESET);
+                userInput = scanner.nextLine();
+            }
+        } else if (type.equals("wizard")) {
+            System.out.println("\n" + "\033[80C" + Emoji.FINGER + Colors.CYAN_BOLD + "  Please input the desired intelligence for your " +
+                    Colors.YELLOW_BOLD + "[" + type + "]" + Colors.CYAN_BOLD + " player\n");
+            System.out.println("\033[85C" + "you may input values between " + Colors.YELLOW_BOLD + "[" + 1 + "]" +
+                            Colors.CYAN_BOLD + " and "  + Colors.YELLOW_BOLD + "[" + 50 + "]\n" + Colors.RESET);
+            System.out.print("\033[110C");
+            userInput = scanner.nextLine();
+            while (!Menu.validValue(userInput, 50, 1)) {
+                Log.errorInputLog("\033[80C" + Emoji.CROSS_MARK + Colors.CYAN_BOLD + "  Invalid INPUT. Enter a number between " +
+                        Colors.YELLOW_BOLD + "[" + 1 + "]" + Colors.CYAN_BOLD + " and "  +
+                        Colors.YELLOW_BOLD + "[" + 50 + "]" + Colors.CYAN_BOLD + ", and press " +
+                        Colors.GREEN_BOLD + "[ENTER]\n\n" + Colors.RESET);
+                userInput = scanner.nextLine();
+            }
+        }
+        Menu.clean();
+        return Integer.parseInt(userInput);
+    }
+
 
 }
