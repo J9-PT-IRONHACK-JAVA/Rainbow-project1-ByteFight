@@ -79,9 +79,9 @@ public class Party {
         listCharacters.add(character);
     }
 
-    public void removeCharacter(Character character) {
+    public void removeCharacter(int index) {
 
-            listCharacters.remove(character);
+            listCharacters.remove(index);
     }
 
 

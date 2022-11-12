@@ -1,17 +1,16 @@
 package com.ironhack.RPG.Displays;
 
+import com.ironhack.RPG.Model.*;
 import com.ironhack.RPG.Model.Character;
-import com.ironhack.RPG.Model.Party;
-import com.ironhack.RPG.Model.Warrior;
-import com.ironhack.RPG.Model.Wizard;
+import com.ironhack.RPG.Services.Menu;
 import com.ironhack.RPG.Utils.Emoji;
 
 import java.util.ArrayList;
 
 public class DisplayGraveyard {
 
-    public static void displayPartyGraveyard(Party party){
-        ArrayList<Character> graveyard = party.getGraveyard();
+    public static void displayPartyGraveyard(Graveyard grav){
+        ArrayList<Character> graveyard = grav.getGraveyard();
         for(Character character : graveyard) {
                 //Check type
             if (character.getType().equals("warrior"))
@@ -22,13 +21,17 @@ public class DisplayGraveyard {
     }
 
     public static void displayWarriorAtGraveyard(Warrior character){
-        System.out.print(Emoji.SKULL);
-        System.out.println(character.toString());
+        Menu.clean();
+        System.out.println("\033[120C" + Emoji.SKULL);
+        System.out.print(character.toString());
+        System.out.println("\n\n\n");
     }
 
     public static void displayWizardAtGraveyard(Wizard character){
-        System.out.print(Emoji.SKULL);
-        System.out.println(character.toString());
+        Menu.clean();
+        System.out.println("\033[120C" + Emoji.SKULL);
+        System.out.print(character.toString());
+        System.out.println("\n\n\n");
     }
 
 }

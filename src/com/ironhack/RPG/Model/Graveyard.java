@@ -5,7 +5,7 @@ import com.ironhack.RPG.Utils.Emoji;
 import java.util.ArrayList;
 
 public class Graveyard {
-    private ArrayList<Character> graveyard = new ArrayList<>();
+    private static ArrayList<Character> graveyard = new ArrayList<>();
 
     public Graveyard() {
     }
