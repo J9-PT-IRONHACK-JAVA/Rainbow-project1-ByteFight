@@ -3,8 +3,7 @@
 <br/>
 
 ### Installation
-This game is optimized to run in Mac computers **and** 
-using the [**iTerm2**](https://iterm2.com/) terminal. 
+This game is optimized to run in the [**iTerm2**](https://iterm2.com/) terminal. 
 - You need to access the 'src' folder by using 
 ``cd folderName/folderName/...`` until you find yourself inside the src folder.
 - Once in 'src', in order to properly compile the code, 
@@ -77,3 +76,21 @@ someone makes a drunken proposal, someone replies
 
 Ok, either that, or we had to do this as a group project
 for our IronHack Java Bootcamp... we'll never know. 
+<br/>
+### Image pre-view
+Initial banner
+![img_1.png](img_1.png)
+<br/>
+Party created 
+![img_3.png](img_3.png)
+<br/>
+Player selected 
+![img_2.png](img_2.png)
+<br/>
+Battle start
+![img_4.png](img_4.png)
+<br/> 
+Battle rounds
+![img_5.png](img_5.png)
+
+
